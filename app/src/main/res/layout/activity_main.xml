@@ -1,38 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="15dp"
-    tools:context=".MainActivity">
+    android:background="#fff">
 
-    <EditText
-        android:id="@+id/username_xml"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Username" />
-    <EditText
-        android:id="@+id/password_xml"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password" />
-    <Button
-        android:id="@+id/login_xml"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
-    <TextView
-        android:id="@+id/forgotpass_xml"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot your password? Click here" />
-    <TextView
-        android:id="@+id/createaccount_xml"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Account" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/no"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
 
-</android.widget.LinearLayout>
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contactless Customer Logbook System"
+        android:layout_below="@id/imageView"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#32CD32"/>
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/appname"
+        android:layout_marginTop="30dp"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/textViewLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login:"
+            android:layout_below="@+id/appname"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+
+        <EditText
+            android:id="@+id/userinput"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColorHint="#fff"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Username"
+            android:textSize="15sp"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:drawableLeft="@drawable/ic_action_user"/>
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:textSize="15sp"
+            android:textColorHint="#fff"
+            android:background="@drawable/rounded_edit_text"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:drawableLeft="@drawable/ic_action_lock" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel2"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lin1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnlogin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btnlogin"
+            android:text="Login"
+            android:textSize="15dp"
+            android:onClick="submit"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textviewforgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel2"
+        android:layout_marginTop="5dp"
+        android:text="Forgot your password?"
+        android:textColor="#0000EE"
+        android:textSize="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/textviewCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="5dp"
+        android:text="Create Account"
+        android:textSize="11dp"
+        android:textColor="#0000EE"
+        android:layout_below="@id/textviewforgot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="80dp" />
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textviewCreate"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/stopcovidd"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
