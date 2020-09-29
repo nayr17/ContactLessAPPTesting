@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userRegistration">
+    tools:context=".CreateAccountActivity">
 
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         app:srcCompat="@drawable/unnamed"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/newUser"
@@ -70,13 +70,26 @@
             android:layout_below="@id/editTextShopLocation"/>
 
         <EditText
+            android:id="@+id/editTextUseremail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="#006400"
+            android:hint="Enter email"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextUsername"/>
+
+
+        <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="textPassword"
             android:hint="Enter password"
-            android:layout_below="@id/editTextUsername"
+            android:layout_below="@id/editTextUseremail"
             android:layout_centerHorizontal="true"/>
 
         <EditText

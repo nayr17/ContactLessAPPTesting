@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ForgotPassActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_baseline_lock_24_1"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/textViewResetPass"/>
+
+    <TextView
+        android:id="@+id/textViewResetPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Password Form"
+        android:textSize="30dp"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/Linear1"
+        android:layout_marginBottom="20dp"
+        android:textStyle="italic"/>
+
+
+    <LinearLayout
+        android:id="@+id/Linear1"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/linear_radius">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="#fff"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="You can reset your password here"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_text_email"
+            android:hint="email address"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="20dp"
+            android:paddingLeft="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send my password"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"/>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

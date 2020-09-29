@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#fff"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -59,7 +60,8 @@
             android:hint="Username"
             android:textSize="15sp"
             android:textColor="#fff"
-            android:textAlignment="center"
+            android:padding="5dp"
+            android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_action_user"/>
 
         <EditText
@@ -73,8 +75,9 @@
             android:textSize="15sp"
             android:textColorHint="#fff"
             android:background="@drawable/rounded_edit_text"
-            android:textAlignment="center"
             android:textColor="#fff"
+            android:padding="5dp"
+            android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_action_lock" />
     </LinearLayout>
 
@@ -92,8 +95,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btnlogin"
             android:text="Login"
-            android:textSize="15dp"
-            android:onClick="submit"/>
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 
