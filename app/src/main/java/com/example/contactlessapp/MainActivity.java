@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         EditText username_input = findViewById(R.id.username_xml);
         EditText password_input = findViewById(R.id.password_xml);
-        Button login_input = findViewById(R.id.login_xml);
+        Button login_button = findViewById(R.id.login_xml);
         TextView forgotpass_input = findViewById(R.id.forgotpass_xml);
         TextView createaccount_input = findViewById(R.id.createaccount_xml);
 
