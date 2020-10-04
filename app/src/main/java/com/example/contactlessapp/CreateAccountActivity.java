@@ -10,69 +10,48 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
-    private RadioGroup radioSelect;
-    private RadioButton customer;
-    private RadioButton shop;
-    private RadioButton establishment;
-    private Button btnNext;
+public class CreateAccountActivity extends AppCompatActivity {
+    RadioGroup radioGroup;
+    RadioButton select;
+    Button btnNext;
+    RadioButton customer;
+    RadioButton shop;
+    RadioButton establishment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        radioSelect =(RadioGroup)findViewById(R.id.RadioGroup);
-        customer =(RadioButton)findViewById(R.id.radioButtonCustomer);
-        shop =(RadioButton)findViewById(R.id.radioButtonShop);
-        establishment =(RadioButton)findViewById(R.id.radioButtonEstablishment);
-        btnNext =(Button)findViewById(R.id.btnNext);
-
-        btnNext.setOnClickListener(this);
-
-        radioSelect.setOnClickListener(this);
-
-        if(customer.isChecked()){
-            shop.setChecked(false);
-            establishment.setChecked(false);
-        }
-        if(shop.isChecked()){
-            customer.setChecked(false);
-            establishment.setChecked(false);
-        }
-        if(establishment.isChecked()){
-            customer.setChecked(false);
-            shop.setChecked(false);
-        }
-
-
+        radioGroup = findViewById(R.id.radioGroup);
+        btnNext = findViewById(R.id.btnNext);
+        customer = findViewById(R.id.radioButtonCustomer);
+        shop = findViewById(R.id.radioButtonShop);
+        establishment = findViewById(R.id.radioButtonEstablishment);
 
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v == btnNext){
-            if(customer.isChecked()){
-                shop.setChecked(false);
-                establishment.setChecked(false);
-                Intent intent = new Intent(this,CreateAccountCustomerActivity.class);
-                startActivity(intent);
-            }else if(shop.isChecked()){
-                customer.setChecked(false);
-                establishment.setChecked(false);
-                Intent intent= new Intent(this, CreateAccountShopActivity.class);
-                startActivity(intent);
-            }else if(establishment.isChecked()){
-                shop.setChecked(false);
-                customer.setChecked(false);
-                Intent intent = new Intent(this,CreateAccountEstablishmentActivity.class);
-            }else if(customer.isChecked() && shop.isChecked() && establishment.isChecked()){
-                Toast.makeText(this,"Invalid account type, please select one only!",Toast.LENGTH_LONG).show();
-            }
-            else{
-                Toast.makeText(this,"Invalid account type, please select!",Toast.LENGTH_LONG).show();
-            }
-        }
+    public void checkButton(View v) {
+        int radID = radioGroup.getCheckedRadioButtonId();
+        select = findViewById(radID);
+        Toast.makeText(this, "Selected account type " + "'" + select.getText() +"'", Toast.LENGTH_SHORT).show();
+    }
 
+    public void btnNext(View view) {
+        int radID = radioGroup.getCheckedRadioButtonId();
+        select = findViewById(radID);
+        if (select == customer) {
+            Intent i = new Intent(this, CreateAccountCustomerActivity.class);
+            startActivity(i);
+        }
+        if (select == shop) {
+            Intent i = new Intent(this, CreateAccountShopActivity.class);
+            startActivity(i);
+        }
+        if (select == establishment) {
+            Intent i = new Intent(this, CreateAccountEstablishmentActivity.class);
+            startActivity(i);
+        }
     }
 }
+

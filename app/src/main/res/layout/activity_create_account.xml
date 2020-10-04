@@ -37,20 +37,13 @@
         android:layout_below="@id/textViewSelection"
         android:layout_marginTop="30dp"/>
 
-
         <RadioGroup
-            android:id="@+id/RadioGroup"
-            android:layout_width="300dp"
-            android:layout_height="180dp"
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/textViewAccountType"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:background="@drawable/linear_radius">
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            android:layout_centerInParent="true">
 
                 <RadioButton
                     android:id="@+id/radioButtonCustomer"
@@ -59,9 +52,9 @@
                     android:text="Customer"
                     android:textSize="20dp"
                     android:paddingLeft="5dp"
-                    android:textColor="#fff"
-                    android:buttonTint="#fff"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:onClick="checkButton"
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/radioButtonShop"
@@ -71,9 +64,8 @@
                     android:textSize="20dp"
                     android:paddingLeft="5dp"
                     android:layout_marginTop="15dp"
-                    android:textColor="#fff"
-                    android:buttonTint="#fff"
                     android:textStyle="bold"
+                    android:onClick="checkButton"
                     android:layout_below="@+id/radioButtonCustomer"/>
 
                 <RadioButton
@@ -84,28 +76,22 @@
                     android:textSize="20dp"
                     android:paddingLeft="5dp"
                     android:layout_marginTop="15dp"
-                    android:textColor="#fff"
-                    android:buttonTint="#fff"
                     android:textStyle="bold"
+                    android:onClick="checkButton"
                     android:layout_below="@+id/radioButtonShop"/>
-
-            </RelativeLayout>
-
-
-
         </RadioGroup>
-
 
     <Button
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/RadioGroup"
+        android:layout_below="@+id/radioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="next"
         android:textSize="15dp"
-        android:padding="20dp"/>
+        android:padding="20dp"
+        android:onClick="btnNext"/>
 
 
 </RelativeLayout>
