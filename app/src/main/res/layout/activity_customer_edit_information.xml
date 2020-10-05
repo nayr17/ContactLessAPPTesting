@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="@drawable/picborder"
-       android:src="@drawable/qrsample" />
+        android:src="@drawable/qrsample" />
 
     <TextView
         android:layout_marginTop="10dp"
@@ -22,7 +22,7 @@
         android:layout_below="@+id/CustomerQRcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Personal Information"
+        android:text="Edit Information Form"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
         android:layout_marginBottom="10dp"/>
@@ -39,7 +39,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="upload photo"
+        android:text="Change photo"
         android:layout_below="@+id/UserPic"
         android:layout_marginTop="10dp"
         android:textSize="10dp"
@@ -48,67 +48,72 @@
     <LinearLayout
         android:id="@+id/linearInfo"
         android:layout_below="@+id/textViewPersonalInformation"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerHorizontal="true">
+        android:layout_marginLeft="140dp">
 
-        <TextView
+        <EditText
             android:layout_marginTop="25dp"
             android:id="@+id/textViewName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name: "
+            android:hint="Enter name"
+            android:inputType="text"
             android:layout_below="@+id/CustomerQRcode"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_marginBottom="5dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/textViewAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Address: "
+            android:hint="Enter address"
+            android:inputType="text"
             android:layout_below="@+id/textViewName"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_marginBottom="5dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/textViewPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone number: "
+            android:hint="Enter phone number: "
+            android:inputType="number"
             android:layout_below="@+id/textViewAddress"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_marginBottom="5dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/textViewBarangay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Barangay: "
+            android:hint="Enter barangay"
+            android:inputType="text"
             android:layout_below="@+id/textViewPhone"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_marginBottom="5dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/textViewUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username: "
+            android:hint="Enter username"
             android:layout_below="@+id/textViewBarangay"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_marginBottom="5dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email: "
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
             android:layout_below="@+id/textViewUsername"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
@@ -116,15 +121,16 @@
 
 
     </LinearLayout>
-    
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="edit"
+        android:text="update"
         android:layout_below="@id/linearInfo"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btnlogin"
-        android:layout_marginTop="20dp"/>
+        android:background="@drawable/btncreateuser"
+        android:layout_marginTop="20dp"
+        android:textColor="#fff"/>
 
 
 </RelativeLayout>

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerMainActivity"></activity>
+        <activity android:name=".CustomerEditInformationActivity"></activity>
+        <activity android:name=".CustomerMainActivity" />
         <activity android:name=".ShopEstablishmentMainActivity" />
         <activity android:name=".CreateAccountCustomerActivity" />
         <activity android:name=".CreateAccountShopActivity" />
