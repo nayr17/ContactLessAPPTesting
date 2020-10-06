@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Customer Form"
-        android:textSize="40dp"
+        android:textSize="25dp"
         android:textColor="#32CD32"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"/>
@@ -30,7 +30,7 @@
         android:layout_below="@+id/newShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true">
 
 
@@ -40,109 +40,115 @@
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="textPersonName"
-            android:text=""
             android:textColor="#006400"
             android:hint="Enter name"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textSize="15dp"/>
 
         <EditText
-            android:id="@+id/editTextAddress"
+            android:id="@+id/editTextCustomerAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextCustomerName"
-            android:layout_marginTop="-2dp"
             android:ems="15"
             android:hint="Enter address"
-            android:inputType="textPersonName"/>
+            android:textSize="15dp"
+            android:inputType="textPersonName"
+            android:layout_centerHorizontal="true"/>
 
         <EditText
-            android:id="@+id/editTextPhoneNO"
+            android:id="@+id/editTextCustomerPhoneNO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="number"
-            android:text=""
             android:textColor="#006400"
             android:hint="Enter phone number"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/editTextAddress"/>
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerAddress"/>
 
         <EditText
-            android:id="@+id/editTextBarangay"
+            android:id="@+id/editTextCustomerBarangay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="number"
-            android:text=""
             android:textColor="#006400"
             android:hint="Enter barangay"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/editTextPhoneNO"/>
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerPhoneNO"/>
 
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/editTextCustomerUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="text"
-            android:text=""
             android:textColor="#006400"
             android:hint="Enter username"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/editTextBarangay"/>
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerBarangay"/>
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTextCustomerEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="textEmailAddress"
-            android:text=""
             android:textColor="#006400"
             android:hint="Enter email address"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/editTextUsername"/>
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerUsername"/>
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextCustomerPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="textPassword"
             android:hint="Enter password"
-            android:layout_below="@id/editTextEmail"
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerEmail"
             android:layout_centerHorizontal="true"/>
 
         <EditText
-            android:id="@+id/editTextConfirmPassword"
+            android:id="@+id/editTextCustomerConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
             android:inputType="textPassword"
             android:hint="Cofirm password"
-            android:layout_below="@id/editTextPassword"
+            android:textSize="15dp"
+            android:layout_below="@id/editTextCustomerPassword"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnCreateAccount"
+        android:id="@+id/btnCustomerCreateAccount"
         android:layout_width="200dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/RelUserInfo"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="Create Account"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:background="@drawable/btncreateuser"
-        android:textColor="#fff"/>
+        android:textColor="#fff"
+        android:onClick="btnCustomerCreateAccount"/>
 
     <TextView
         android:id="@+id/TextViewGotoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already Created? Click here to login"
-        android:layout_below="@id/btnCreateAccount"
+        android:layout_below="@id/btnCustomerCreateAccount"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:textColor="#0000EE"/>
+        android:textColor="#0000EE"
+        android:onClick="goToLogin"
+        android:textSize="12dp"/>
 
 
 </RelativeLayout>

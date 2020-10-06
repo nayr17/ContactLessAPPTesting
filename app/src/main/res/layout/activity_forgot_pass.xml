@@ -13,6 +13,7 @@
         android:layout_height="100dp"
         app:srcCompat="@drawable/ic_baseline_lock_24_1"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:layout_above="@+id/textViewResetPass"/>
 
     <TextView
@@ -20,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reset Password Form"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="#000"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/Linear1"
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
             android:textColor="#fff"
-            android:textSize="35dp"
+            android:textSize="25dp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"/>
@@ -61,6 +62,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:textSize="15dp"
             android:background="@drawable/edit_text_email"
             android:hint="email address"
             android:drawableLeft="@drawable/ic_baseline_email_24"
@@ -74,7 +76,8 @@
             android:text="Reset my password"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:padding="15dp"/>
+            android:padding="15dp"
+            android:textSize="15dp"/>
 
 
     </LinearLayout>

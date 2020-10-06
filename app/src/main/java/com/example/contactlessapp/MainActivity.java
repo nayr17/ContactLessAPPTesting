@@ -16,15 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    Button login_button;
+    EditText username_input;
+    EditText password_input;
+
+    String user = "user";
+    String pass = "123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText username_input = findViewById(R.id.username_xml);
-        EditText password_input = findViewById(R.id.password_xml);
-        Button login_button = findViewById(R.id.login_xml);
+        username_input = findViewById(R.id.username_xml);
+        password_input = findViewById(R.id.password_xml);
+        login_button = findViewById(R.id.login_xml);
         TextView forgotpass_input = findViewById(R.id.forgotpass_xml);
         TextView createaccount_input = findViewById(R.id.createaccount_xml);
 
@@ -49,5 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void btnLogin(View view) {
+
+
     }
 }

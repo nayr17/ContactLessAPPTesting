@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/CustomerQRcode"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/picborder"
         android:src="@drawable/qrsample" />
 
@@ -24,8 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Edit Information Form"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="25dp" />
 
     <ImageView
         android:id="@+id/UserPic"
@@ -43,7 +42,7 @@
         android:layout_below="@+id/UserPic"
         android:layout_marginTop="10dp"
         android:textSize="10dp"
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginLeft="25dp"/>
 
     <LinearLayout
         android:id="@+id/linearInfo"
@@ -129,8 +128,9 @@
         android:layout_below="@id/linearInfo"
         android:layout_centerHorizontal="true"
         android:background="@drawable/btncreateuser"
-        android:layout_marginTop="20dp"
-        android:textColor="#fff"/>
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:textSize="15dp"/>
 
 
 </RelativeLayout>

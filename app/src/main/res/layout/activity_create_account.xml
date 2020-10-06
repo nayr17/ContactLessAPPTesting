@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/selection"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/selection"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
@@ -19,29 +19,31 @@
         android:id="@+id/textViewSelection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account Selection || Create account"
-        android:textSize="40dp"
-        android:gravity="center"
+        android:text="Account Selection ||"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/selection"
+        android:textColor="#32CD32"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textViewSelection1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create account"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textViewSelection"
         android:textColor="#32CD32"/>
 
-    <TextView
-        android:id="@+id/textViewAccountType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="account for:"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:layout_below="@id/textViewSelection"
-        android:layout_marginTop="30dp"/>
+
 
         <RadioGroup
+            android:layout_marginTop="20dp"
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewAccountType"
+            android:layout_below="@+id/textViewSelection1"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true">
 
@@ -50,18 +52,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Customer"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:paddingLeft="5dp"
                     android:textStyle="bold"
-                    android:onClick="checkButton"
-                    android:checked="true"/>
+                    android:onClick="checkButton"/>
 
                 <RadioButton
                     android:id="@+id/radioButtonShop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shop"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:paddingLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:textStyle="bold"
@@ -73,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Establishment"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:paddingLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:textStyle="bold"
