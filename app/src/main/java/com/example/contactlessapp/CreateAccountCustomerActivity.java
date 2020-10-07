@@ -1,6 +1,7 @@
 package com.example.contactlessapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.contactlessapp.DbHelpers.CreateAccountCustomerHelperClass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccountCustomerActivity extends AppCompatActivity {
     EditText CustomerName;
@@ -19,8 +23,11 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
     EditText CustomerEmail;
     EditText CustomerPass;
     EditText CustomerConfirmPassword;
-    TextView goToLogin;
-    Button CustomerCreateAccount;
+
+    String AccountType ="Customer";
+    FirebaseDatabase myDB;
+    DatabaseReference users;
+
 
 
     @Override
@@ -40,17 +47,27 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
     }
 
     public void btnCustomerCreateAccount (View view) {
-        /*
+       myDB = FirebaseDatabase.getInstance();
+       users = myDB.getReference("Users");
+
+       String accountType = AccountType;
+       String name = CustomerName.getText().toString().trim();
+       String address = CustomerAddress.getText().toString().trim();
+       String phoneNumber =CustomerPhoneNumber.getText().toString().trim();
+       String barangay = CustomerBarangay.getText().toString().trim();
+       String username = CustomerUsername.getText().toString().trim();
+       String email = CustomerEmail.getText().toString().trim();
+       String password = CustomerPass.getText().toString().trim();
+       String confirmpass = CustomerConfirmPassword.getText().toString().trim();
 
 
-        code
-        if statement
+           CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass( accountType, name, address, phoneNumber, barangay, username, email, password);
+           users.child(username).setValue(helperClass);
+           Intent intent = new Intent(this, MainActivity.class);
+           startActivity(intent);
+           Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show();
+           finish();
 
-         */
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show();
 
     }
 

@@ -10,38 +10,183 @@
     <LinearLayout
         android:id="@+id/linearNavigation"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ImageButton
-            android:id="@+id/RecentScan"
+        <RelativeLayout
             android:layout_width="205dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_assignment_24"/>
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/AboutUS"
-            android:layout_width="205dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_account_circle_24"/>
+            <ImageButton
+                android:id="@+id/RecentScan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_baseline_assignment_24"
+                android:backgroundTint="#D3D3D3"/>
 
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/AboutUS"
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_account_circle_24"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView"
+
+    <RelativeLayout
+        android:id="@+id/relativeDisplayInfo"
+        android:layout_below="@id/linearNavigation"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_below="@+id/linearNavigation"/>
+        android:layout_height="440dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#D3D3D3"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/imageViewCustomerPic"
+                            android:padding="10dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/unnamed"/>
+                        <TextView
+                            android:id="@+id/textViewCustomerID"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Customer # 1"
+                            android:layout_below="@+id/imageViewCustomerPic"
+                            android:textSize="12dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_centerInParent="true"/>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date: "
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textViewDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"
+                            android:text="10/7/2020"
+                            android:textSize="12dp"
+                            android:padding="5dp"
+                            android:background="#D3D3D3"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@+id/date"
+                            android:layout_centerHorizontal="true"/>
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time: "
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@id/textViewDate"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textViewTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="time"
+                            android:layout_below="@id/time"
+                            android:padding="5dp"
+                            android:text="9:02 AM"
+                            android:textSize="12dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#D3D3D3"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/textViewGetCustomerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:text="Name: John Rey J. Malaban"
+                            android:padding="5dp"
+                            android:textSize="12dp"
+                            android:background="#D3D3D3"/>
+
+                        <TextView
+                            android:id="@+id/textViewGetCustomerAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="Address: blk40 lot123 carmela valley homes talisay city"
+                            android:textSize="12dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#D3D3D3"
+                            android:layout_below="@id/textViewGetCustomerName"/>
+
+                        <TextView
+                            android:id="@+id/textViewGetCustomerPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:text="Phone Number: 09071254215"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#D3D3D3"
+                            android:textSize="12dp"
+                            android:layout_below="@id/textViewGetCustomerAddress"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recycleView"
+        android:layout_below="@id/relativeDisplayInfo"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:clickable="true"
@@ -52,7 +197,7 @@
         android:id="@+id/floatingActionScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recycleView"
+        android:layout_below="@+id/relativeDisplayInfo"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"

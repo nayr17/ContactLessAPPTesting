@@ -10,6 +10,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CreateAccountActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton select;
@@ -17,7 +20,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     RadioButton customer;
     RadioButton shop;
     RadioButton establishment;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

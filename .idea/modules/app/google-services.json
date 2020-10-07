@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "299100518810",
-    "firebase_url": "https://la-salle-ojt.firebaseio.com",
-    "project_id": "la-salle-ojt",
-    "storage_bucket": "la-salle-ojt.appspot.com"
+    "project_number": "1006798799757",
+    "firebase_url": "https://contactlessapp-194ba.firebaseio.com",
+    "project_id": "contactlessapp-194ba",
+    "storage_bucket": "contactlessapp-194ba.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:299100518810:android:238641d77da9effb9f6223",
+        "mobilesdk_app_id": "1:1006798799757:android:d333fe1727acdc368433c4",
         "android_client_info": {
           "package_name": "com.example.contactlessapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "299100518810-9aa74jlm6shhkk9uoc4fh6tag5hj8nr4.apps.googleusercontent.com",
+          "client_id": "1006798799757-u5svg5dnmrs5a6iq164p6dgonk8f5uh4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.contactlessapp",
-            "certificate_hash": "e88fae1d5962eeaa5b19747f451651f7553e7bce"
+            "certificate_hash": "3ab9750e11c8623c787116fac9d6bf031f1ea927"
           }
         },
         {
-          "client_id": "299100518810-859i6eq74sbj2kf77q6mrf281flhltcn.apps.googleusercontent.com",
+          "client_id": "1006798799757-vutqn4qlc0dqmo4v7lotgf9328uk35g0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQBo4kWwav7uckvUsJnuwYpASRfrOSrxA"
+          "current_key": "AIzaSyB58YVWSww_f4kqXd29THS1HmkfWv_7EBU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "299100518810-859i6eq74sbj2kf77q6mrf281flhltcn.apps.googleusercontent.com",
+              "client_id": "1006798799757-vutqn4qlc0dqmo4v7lotgf9328uk35g0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
