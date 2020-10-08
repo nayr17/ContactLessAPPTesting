@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "299100518810",
-    "firebase_url": "https://la-salle-ojt.firebaseio.com",
-    "project_id": "la-salle-ojt",
-    "storage_bucket": "la-salle-ojt.appspot.com"
+    "project_number": "393111136094",
+    "firebase_url": "https://contactlessapp-cb815.firebaseio.com",
+    "project_id": "contactlessapp-cb815",
+    "storage_bucket": "contactlessapp-cb815.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:299100518810:android:238641d77da9effb9f6223",
+        "mobilesdk_app_id": "1:393111136094:android:55c641888d01ece21711cf",
         "android_client_info": {
           "package_name": "com.example.contactlessapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "299100518810-9aa74jlm6shhkk9uoc4fh6tag5hj8nr4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.contactlessapp",
-            "certificate_hash": "e88fae1d5962eeaa5b19747f451651f7553e7bce"
-          }
-        },
-        {
-          "client_id": "299100518810-859i6eq74sbj2kf77q6mrf281flhltcn.apps.googleusercontent.com",
+          "client_id": "393111136094-6qq3n2lg2m16cvsi4gnligtkth6ltclg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQBo4kWwav7uckvUsJnuwYpASRfrOSrxA"
+          "current_key": "AIzaSyD8pGAzV-XYfzkeAUw_3Vox5Zay0TMP2Ys"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "299100518810-859i6eq74sbj2kf77q6mrf281flhltcn.apps.googleusercontent.com",
+              "client_id": "393111136094-6qq3n2lg2m16cvsi4gnligtkth6ltclg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
