@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
     Button login_button;
     EditText username_input;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     String user = "user";
     String pass = "123";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
