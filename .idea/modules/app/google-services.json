@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "393111136094",
+    "firebase_url": "https://contactlessapp-cb815.firebaseio.com",
+    "project_id": "contactlessapp-cb815",
+    "storage_bucket": "contactlessapp-cb815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393111136094:android:55c641888d01ece21711cf",
+        "android_client_info": {
+          "package_name": "com.example.contactlessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393111136094-8eirqt90nls219f1lugme9e4mdma6ggo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.contactlessapp",
+            "certificate_hash": "3ab9750e11c8623c787116fac9d6bf031f1ea927"
+          }
+        },
+        {
+          "client_id": "393111136094-6qq3n2lg2m16cvsi4gnligtkth6ltclg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8pGAzV-XYfzkeAUw_3Vox5Zay0TMP2Ys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393111136094-6qq3n2lg2m16cvsi4gnligtkth6ltclg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
