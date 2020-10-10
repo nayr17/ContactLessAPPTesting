@@ -37,11 +37,14 @@ public class CreateAccountShopActivity extends AppCompatActivity {
     private String email;
     private String password;
     private String confirmpass;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_shop);
+        firebaseAuth =FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
 
 
         shopName = findViewById(R.id.editTextShopName);
@@ -100,15 +103,16 @@ public class CreateAccountShopActivity extends AppCompatActivity {
                                 shopUsername.setError("Pick another username.");
                                 Toast.makeText(CreateAccountShopActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
                             }else{
-                               FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-                               DatabaseReference shopRef = database1.getReference("Registered_Users");
-                               CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
-                               shopRef.child(username).setValue(helperClass);
-                               Toast.makeText(CreateAccountShopActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
+                                firebaseAuth.createUserWithEmailAndPassword(email,password);
+                                   FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                   DatabaseReference shopRef = database.getReference("Registered_Users");
+                                   CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
+                                   shopRef.child(username).setValue(helperClass);
+                                   Toast.makeText(CreateAccountShopActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
 
-                               Intent intent = new Intent(CreateAccountShopActivity.this, MainActivity.class);
-                               startActivity(intent);
-                               finish();
+                                   Intent intent = new Intent(CreateAccountShopActivity.this, MainActivity.class);
+                                   startActivity(intent);
+                                   finish();
                             }
 
                         }

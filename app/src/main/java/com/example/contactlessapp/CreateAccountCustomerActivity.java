@@ -33,14 +33,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import javax.xml.transform.Result;
 
 public class CreateAccountCustomerActivity extends AppCompatActivity{
-    private EditText CustomerName;
-    private EditText CustomerAddress;
-    private EditText CustomerPhoneNumber;
-    private EditText CustomerBarangay;
-    private EditText CustomerUsername;
-    private EditText CustomerEmail;
-    private EditText CustomerPass;
-    private EditText CustomerConfirmPassword;
+     EditText CustomerName;
+     EditText CustomerAddress;
+     EditText CustomerPhoneNumber;
+     EditText CustomerBarangay;
+     EditText CustomerUsername;
+     EditText CustomerEmail;
+     EditText CustomerPass;
+     EditText CustomerConfirmPassword;
 
     //Customer helper class parameters
     String AccountType ="Customer";
@@ -54,7 +54,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
     private String password;
     private String confirmpass;
 
-    private  FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -63,8 +63,9 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_customer);
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
+        if(firebaseAuth.getCurrentUser() != null){
+            firebaseAuth.signOut();
+        }
 
         CustomerName = findViewById(R.id.editTextCustomerName);
         CustomerAddress = findViewById(R.id.editTextCustomerAddress);
@@ -89,6 +90,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
        email = CustomerEmail.getText().toString().trim();
        password = CustomerPass.getText().toString().trim();
        confirmpass = CustomerConfirmPassword.getText().toString().trim();
+
 
        if(TextUtils.isEmpty(name)){
            CustomerName.setError("field cannot be empty.");
@@ -131,21 +133,22 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
                         CustomerUsername.setError("pick another username.");
                         Toast.makeText(CreateAccountCustomerActivity.this,"Username already exist.",Toast.LENGTH_SHORT).show();
 
-                    }else{
+                    }
 
-//                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                        DatabaseReference myref = database.getReference("Registered_Users");
-//                        CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
-//                        myref.child(username).setValue(helperClass);
-
+                    else{
                         firebaseAuth.createUserWithEmailAndPassword(email,password);
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Registered_Users");
+                            CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
+                            myRef.child(username).setValue(helperClass);
+                            firebaseAuth.createUserWithEmailAndPassword(email,password);
 
-                        Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
 
-//                       Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
-//                       startActivity(intent);
-//
-//                       finish();
+                           Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
+                           startActivity(intent);
+
+                           finish();
                     }
 
                 }

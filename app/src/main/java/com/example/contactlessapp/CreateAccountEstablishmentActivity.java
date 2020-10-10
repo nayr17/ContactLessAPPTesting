@@ -36,12 +36,16 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
     private String email;
     private String password;
     private String confirmPassword;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_establishment);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+
 
         establishmentName = findViewById(R.id.editTextEstablishmentName);
         establishmentLocation = findViewById(R.id.editTextEstablishmentLocation);
@@ -77,6 +81,10 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(email)){
             establishmentEmail.setError("field cannot be empty.");
             return;
+            /*if(email.length() <6){
+            establishmentEmail.setError("must be at least 6 characters long");
+            }
+             */
         }
         if(TextUtils.isEmpty(password)){
             establishmentPassword.setError("field cannot be empty.");
@@ -99,8 +107,9 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
                         establishmentUsername.setError("Pick another username.");
                         Toast.makeText(CreateAccountEstablishmentActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
                     }else{
-                        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
-                        DatabaseReference establishmentRef = database2.getReference("Registered_Users");
+                        firebaseAuth.createUserWithEmailAndPassword(email,password);
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference establishmentRef = database.getReference("Registered_Users");
                         CreateAccountEstablishmentHelperClass helperClass = new CreateAccountEstablishmentHelperClass(accountType, name, location, username,email, password);
                         establishmentRef.child(username).setValue(helperClass);
                         Toast.makeText(CreateAccountEstablishmentActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
