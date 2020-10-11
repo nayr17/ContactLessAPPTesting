@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.contactlessapp.DbHelpers.CreateAccountCustomerHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,12 +29,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.EventListener;
+
 public class MainActivity extends AppCompatActivity {
     Button login_button;
-    EditText email_input;
+    EditText username_input;
     EditText password_input;
 
-    private String email;
+    private String username;
     private String password;
     private String Customer = "Customer";
     private String Shop= "Shop";
@@ -49,8 +52,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser()!= null){
+            firebaseAuth.signOut();
+        }
 
-        email_input = findViewById(R.id.email_xml);
+        username_input = findViewById(R.id.username_xml);
         password_input = findViewById(R.id.password_xml);
         login_button = findViewById(R.id.login_xml);
         TextView forgotpass_input = findViewById(R.id.forgotpass_xml);
@@ -81,65 +88,137 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnLogin(View view) {
-         email = email_input.getText().toString().trim();
+         username = username_input.getText().toString().trim();
          password = password_input.getText().toString().trim();
 
-        if(TextUtils.isEmpty(email)){
-            email_input.setError("enter username");
+        if(TextUtils.isEmpty(username)){
+            username_input.setError("enter username");
             return;
         }
         if(TextUtils.isEmpty(password)){
             password_input.setError("enter password");
             return;
         }
-//        progressDialog.setMessage("Logging in...");
-//        progressDialog.show();
+        progressDialog.setMessage("Checking account...");
+        progressDialog.show();
 
-        DatabaseReference login = FirebaseDatabase.getInstance().getReference("Registered_Users");
-        login.orderByChild("username").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                snapshot.child("accountype").getValue().toString();
-                if(snapshot.equals(Customer)){
-                    Toast.makeText(MainActivity.this,"user match " + Customer, Toast.LENGTH_LONG).show();
-                }
-                if(snapshot.equals(Shop)){
-                    Toast.makeText(MainActivity.this,"user match " + Shop, Toast.LENGTH_LONG).show();
-                }
-            }
+        //checks username input
+        DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
+        loginRef.orderByChild("username").equalTo(username)
+               .addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       //if username is exist
+                       if(snapshot.exists()){
+//                           Toast.makeText(MainActivity.this,"success",Toast.LENGTH_LONG).show();
+                           //checks the username account type
+                           final DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
+                           accountRef.orderByValue().equalTo(Customer).addValueEventListener(new ValueEventListener() {
+                              @Override
+                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                  //if account type exist
+                                  if(snapshot.exists()){
+//                                      Toast.makeText(MainActivity.this, "Customer" ,Toast.LENGTH_LONG ).show();
+                                      //checks user password input
+                                      accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+                                          @Override
+                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                              //if exist or match
+                                              if(snapshot.exists()){
+                                                  DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/emailAddress");
+                                                  emailRef.addValueEventListener(new ValueEventListener() {
+                                                      @Override
+                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                          if(snapshot.exists()){
+                                                              String getEmail = snapshot.getValue().toString().trim();
+//                                                              Toast.makeText(MainActivity.this, "email: " + getEmail ,Toast.LENGTH_LONG ).show();
+                                                              firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                  @Override
+                                                                  public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                      if(task.isSuccessful()){
+                                                                          Intent intent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                                                                          startActivity(intent);
+                                                                          finish();
+                                                                      }else {
+                                                                          Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+                                                                      }
+                                                                  }
+                                                              });
+                                                          }
+                                                      }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                                                      @Override
+                                                      public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                                                      }
+                                                  });
+
+                                              }
+                                          }
+
+                                          @Override
+                                          public void onCancelled(@NonNull DatabaseError error) {
+
+                                          }
+                                      });
+                                  }
+                                  else{
+                                      accountRef.orderByValue().equalTo(Shop).addValueEventListener(new ValueEventListener() {
+                                          @Override
+                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                              if(snapshot.exists()){
+                                                  Toast.makeText(MainActivity.this, "Shop" ,Toast.LENGTH_LONG ).show();
+                                              }
+                                              else{
+                                                  accountRef.orderByValue().equalTo(Establishment).addValueEventListener(new ValueEventListener() {
+                                                      @Override
+                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                          if(snapshot.exists()){
+                                                              Toast.makeText(MainActivity.this, "Establishment" ,Toast.LENGTH_LONG ).show();
+                                                          }
+                                                      }
+
+                                                      @Override
+                                                      public void onCancelled(@NonNull DatabaseError error) {
+
+                                                      }
+                                                  });
+                                              }
+                                          }
+
+                                          @Override
+                                          public void onCancelled(@NonNull DatabaseError error) {
+
+                                          }
+                                      });
+                                  }
 
 
-//       DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
-//       loginRef.orderByChild("username").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-//           @Override
-//           public void onDataChange(@NonNull DataSnapshot snapshot) {
-//               if(snapshot.exists()){
-//                   Toast.makeText(MainActivity.this,"user match", Toast.LENGTH_LONG).show();
-//                   snapshot.child("AccountType").getValue().toString().trim();
-//                   if(snapshot.equals(Customer)){
-//                       Toast.makeText(MainActivity.this,"user match " + Customer, Toast.LENGTH_LONG).show();
-//                   }
-//                   if(snapshot.equals(Shop)){
-//                       Toast.makeText(MainActivity.this,"user match " + Shop, Toast.LENGTH_LONG).show();
-//                   }
-//                   if(snapshot.equals(Establishment)){
-//                       Toast.makeText(MainActivity.this,"user match " + Establishment, Toast.LENGTH_LONG).show();
-//                   }
-//               }
-//           }
-//
-//           @Override
-//           public void onCancelled(@NonNull DatabaseError error) {
-//
-//           }
-//       });
-//        progressDialog.dismiss();
+
+
+
+                              }
+
+                              @Override
+                              public void onCancelled(@NonNull DatabaseError error) {
+
+                              }
+                          });
+                       }
+                       else {
+                           Toast.makeText(MainActivity.this, "user not found, please try again", Toast.LENGTH_LONG).show();
+                       }progressDialog.dismiss();
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+
+
+               });
+
+
 
 
 //        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
@@ -191,7 +270,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
 
     }
 }
