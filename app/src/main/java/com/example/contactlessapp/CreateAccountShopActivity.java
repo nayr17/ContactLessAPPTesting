@@ -5,15 +5,21 @@ import com.example.contactlessapp.DbHelpers.CreateAccountShopHelperClass;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.contactlessapp.DbHelpers.EmailDBClass;
 import com.google.android.gms.common.internal.AccountType;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +44,7 @@ public class CreateAccountShopActivity extends AppCompatActivity {
     private String password;
     private String confirmpass;
     FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,35 @@ public class CreateAccountShopActivity extends AppCompatActivity {
         shopEmail = findViewById(R.id.editTextShopEmail);
         shopPassword = findViewById(R.id.editTextShopPassword);
         shopConfirmPassword = findViewById(R.id.editTextShopConfirmPassword);
+        progressDialog = new ProgressDialog(this);
 
+    }
+    private boolean validateEmailAddress(EditText CustomerEmail){
+        String email = CustomerEmail.getText().toString();
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return true;
+        }else{
+            CustomerEmail.setError("email is not valid");
+            return  false;
+        }
+    }
+    private boolean checkPasswordChar(EditText CustomerPass){
+        String password = CustomerPass.getText().toString();
+        if(password.length()>=6){
+            return  true;
+        }else {
+            CustomerPass.setError("must be aleast 6 characters");
+            return  false;
+        }
+    }
+    private boolean checkConfirmPasswordChar(EditText CustomerConfirmPassword){
+        String password = CustomerConfirmPassword.getText().toString();
+        if(password.length()<=5){
+            return  true;
+        }else {
+            CustomerConfirmPassword.setError("must be aleast 6 characters");
+            return  false;
+        }
     }
 
     public void btnShopCreateAccount(View view) {
@@ -81,15 +116,15 @@ public class CreateAccountShopActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(email)){
             shopEmail.setError("field cannot be empty.");
             return;
-        }
+        }validateEmailAddress(shopEmail);
         if(TextUtils.isEmpty(password)){
             shopPassword.setError("field cannot be empty.");
             return;
-        }
+        }checkPasswordChar(shopPassword);
         if(TextUtils.isEmpty(confirmpass)){
             shopConfirmPassword.setError("field cannot be empty.");
             return;
-        }
+        }checkConfirmPasswordChar(shopConfirmPassword);
         if(!password.equals(confirmpass)){
             Toast.makeText(this,"Password does not match", Toast.LENGTH_SHORT).show();
         }
@@ -103,16 +138,41 @@ public class CreateAccountShopActivity extends AppCompatActivity {
                                 shopUsername.setError("Pick another username.");
                                 Toast.makeText(CreateAccountShopActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
                             }else{
-                                firebaseAuth.createUserWithEmailAndPassword(email,password);
-                                   FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                   DatabaseReference shopRef = database.getReference("Registered_Users");
-                                   CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
-                                   shopRef.child(username).setValue(helperClass);
-                                   Toast.makeText(CreateAccountShopActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
+                                progressDialog.setMessage("Registering User..");
+                                progressDialog.show();
 
-                                   Intent intent = new Intent(CreateAccountShopActivity.this, MainActivity.class);
-                                   startActivity(intent);
-                                   finish();
+                                firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful()){
+
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference shopRef = database.getReference("Registered_Users");
+                                            CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
+                                            shopRef.child(username).setValue(helperClass);
+
+                                            //for login
+                                            DatabaseReference emailDB = database.getReference("Account_Type");
+                                            EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
+                                            emailDB.child(accountType).setValue(dbhelper);
+
+                                            Toast.makeText(CreateAccountShopActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
+
+                                            Intent intent = new Intent(CreateAccountShopActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(CreateAccountShopActivity.this, "could not register! please try again",
+                                                    Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            Intent intent = new Intent(CreateAccountShopActivity.this, CreateAccountShopActivity.class);
+                                            startActivity(intent);
+                                        }
+                                        progressDialog.dismiss();
+                                    }
+                                });
+
                             }
 
                         }

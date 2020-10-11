@@ -3,12 +3,14 @@ package com.example.contactlessapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.contactlessapp.DbHelpers.CreateAccountCustomerHelperClass;
-
+import com.example.contactlessapp.DbHelpers.EmailDBClass;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.icu.util.Freezable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +57,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
     private String confirmpass;
 
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
 
 
@@ -75,8 +78,36 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
         CustomerEmail = findViewById(R.id.editTextCustomerEmail);
         CustomerPass = findViewById(R.id.editTextCustomerPassword);
         CustomerConfirmPassword = findViewById(R.id.editTextCustomerConfirmPassword);
+        progressDialog = new ProgressDialog(this);
 
 
+    }
+    private boolean validateEmailAddress(EditText CustomerEmail){
+        String email = CustomerEmail.getText().toString();
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return true;
+        }else{
+            CustomerEmail.setError("email is not valid");
+            return  false;
+        }
+    }
+    private boolean checkPasswordChar(EditText CustomerPass){
+        String password = CustomerPass.getText().toString();
+        if(password.length()>=6){
+            return  true;
+        }else {
+            CustomerPass.setError("must be aleast 6 characters");
+            return  false;
+        }
+    }
+    private boolean checkConfirmPasswordChar(EditText CustomerConfirmPassword){
+        String password = CustomerConfirmPassword.getText().toString();
+        if(password.length()<=5){
+            return  true;
+        }else {
+            CustomerConfirmPassword.setError("must be aleast 6 characters");
+            return  false;
+        }
     }
 
     public void btnCustomerCreateAccount (View view) {
@@ -111,15 +142,15 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
         if(TextUtils.isEmpty(email)){
             CustomerEmail.setError("field cannot be empty.");
             return;
-        }
+        }validateEmailAddress(CustomerEmail);
         if(TextUtils.isEmpty(password)){
             CustomerPass.setError("field cannot be empty.");
             return;
-        }
+        }checkPasswordChar(CustomerPass);
         if(TextUtils.isEmpty(confirmpass)){
             CustomerConfirmPassword.setError("field cannot be empty.");
             return;
-        }
+        }checkConfirmPasswordChar(CustomerConfirmPassword);
         if(!password.equals(confirmpass)){
             Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
         }
@@ -136,19 +167,45 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
                     }
 
                     else{
-                        firebaseAuth.createUserWithEmailAndPassword(email,password);
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Registered_Users");
-                            CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
-                            myRef.child(username).setValue(helperClass);
-                            firebaseAuth.createUserWithEmailAndPassword(email,password);
+                        progressDialog.setMessage("Registering User..");
+                        progressDialog.show();
 
-                            Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
+                        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
 
-                           Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
-                           startActivity(intent);
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference myRef = database.getReference("Registered_Users");
+                                    CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
+                                    myRef.child(username).setValue(helperClass);
 
-                           finish();
+                                    //for login
+                                    DatabaseReference emailDB = database.getReference("Account_Type");
+                                    EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
+                                    emailDB.child(accountType).setValue(dbhelper);
+
+
+                                    Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
+                                    startActivity(intent);
+
+                                    finish();
+
+                                }
+                                else{
+                                    Toast.makeText(CreateAccountCustomerActivity.this, "could not register! please try again",
+                                            Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    Intent intent = new Intent(CreateAccountCustomerActivity.this, CreateAccountCustomerActivity.class);
+                                    startActivity(intent);
+                                }
+                                progressDialog.dismiss();
+
+                            }
+                        });
+
                     }
 
                 }

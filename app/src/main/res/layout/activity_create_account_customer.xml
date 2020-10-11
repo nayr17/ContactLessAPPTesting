@@ -41,7 +41,7 @@
             android:ems="20"
             android:inputType="textPersonName"
             android:textColor="#006400"
-            android:hint="Enter name"
+            android:hint="enter name"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"/>
 
@@ -51,9 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextCustomerName"
             android:ems="20"
-            android:hint="Enter address"
+            android:hint="enter address"
             android:textSize="15dp"
             android:inputType="textPersonName"
+            android:textColor="#006400"
             android:layout_centerHorizontal="true"/>
 
         <EditText
@@ -63,7 +64,7 @@
             android:ems="20"
             android:inputType="number"
             android:textColor="#006400"
-            android:hint="Enter phone number"
+            android:hint="enter phone number"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerAddress"/>
@@ -75,7 +76,7 @@
             android:ems="20"
             android:inputType="text"
             android:textColor="#006400"
-            android:hint="Enter barangay"
+            android:hint="enter barangay"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerPhoneNO"/>
@@ -87,7 +88,7 @@
             android:ems="20"
             android:inputType="text"
             android:textColor="#006400"
-            android:hint="Enter username"
+            android:hint="enter username"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerBarangay"/>
@@ -98,7 +99,7 @@
             android:ems="20"
             android:inputType="textEmailAddress"
             android:textColor="#006400"
-            android:hint="Enter email address"
+            android:hint="enter email address"
             android:layout_centerHorizontal="true"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerUsername"/>
@@ -108,7 +109,8 @@
             android:layout_height="wrap_content"
             android:ems="20"
             android:inputType="textPassword"
-            android:hint="Enter password"
+            android:textColor="#006400"
+            android:hint="enter password"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerEmail"
             android:layout_centerHorizontal="true"/>
@@ -119,10 +121,12 @@
             android:layout_height="wrap_content"
             android:ems="20"
             android:inputType="textPassword"
-            android:hint="Cofirm password"
+            android:textColor="#006400"
+            android:hint="cofirm password"
             android:textSize="15dp"
             android:layout_below="@id/editTextCustomerPassword"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
     <Button

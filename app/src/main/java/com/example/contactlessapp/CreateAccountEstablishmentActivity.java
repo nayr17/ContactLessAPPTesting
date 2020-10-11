@@ -3,9 +3,11 @@ package com.example.contactlessapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,10 @@ import android.widget.Toast;
 
 import com.example.contactlessapp.DbHelpers.CreateAccountEstablishmentHelperClass;
 import com.example.contactlessapp.DbHelpers.CreateAccountShopHelperClass;
+import com.example.contactlessapp.DbHelpers.EmailDBClass;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +43,7 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
     private String password;
     private String confirmPassword;
     FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -53,9 +60,35 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
         establishmentEmail = findViewById(R.id.editTextEstablishmentemail);
         establishmentPassword = findViewById(R.id.editTextEstablishmentPassword);
         establishmentConfirmPassword= findViewById(R.id.editTextEstablishmentConfirmPassword);
+        progressDialog = new ProgressDialog(this);
     }
-
-
+    private boolean validateEmailAddress(EditText CustomerEmail){
+        String email = CustomerEmail.getText().toString();
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return true;
+        }else{
+            CustomerEmail.setError("email is not valid");
+            return  false;
+        }
+    }
+    private boolean checkPasswordChar(EditText CustomerPass){
+        String password = CustomerPass.getText().toString();
+        if(password.length()>=6){
+            return  true;
+        }else {
+            CustomerPass.setError("must be aleast 6 characters");
+            return  false;
+        }
+    }
+    private boolean checkConfirmPasswordChar(EditText CustomerConfirmPassword){
+        String password = CustomerConfirmPassword.getText().toString();
+        if(password.length()<=5){
+            return  true;
+        }else {
+            CustomerConfirmPassword.setError("must be aleast 6 characters");
+            return  false;
+        }
+    }
     public void btnEstablishmentCreateAccount(View view) {
 
         accountType = AccountType;
@@ -81,19 +114,15 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(email)){
             establishmentEmail.setError("field cannot be empty.");
             return;
-            /*if(email.length() <6){
-            establishmentEmail.setError("must be at least 6 characters long");
-            }
-             */
-        }
+        }validateEmailAddress(establishmentEmail);
         if(TextUtils.isEmpty(password)){
             establishmentPassword.setError("field cannot be empty.");
             return;
-        }
+        }checkPasswordChar(establishmentPassword);
         if(TextUtils.isEmpty(confirmPassword)){
             establishmentConfirmPassword.setError("field cannot be empty.");
             return;
-        }
+        }checkConfirmPasswordChar(establishmentConfirmPassword);
         if(!password.equals(confirmPassword)){
             Toast.makeText(this,"Password does not match", Toast.LENGTH_SHORT).show();
         }
@@ -107,16 +136,42 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
                         establishmentUsername.setError("Pick another username.");
                         Toast.makeText(CreateAccountEstablishmentActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
                     }else{
-                        firebaseAuth.createUserWithEmailAndPassword(email,password);
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference establishmentRef = database.getReference("Registered_Users");
-                        CreateAccountEstablishmentHelperClass helperClass = new CreateAccountEstablishmentHelperClass(accountType, name, location, username,email, password);
-                        establishmentRef.child(username).setValue(helperClass);
-                        Toast.makeText(CreateAccountEstablishmentActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
+                        progressDialog.setMessage("Registering User..");
+                        progressDialog.show();
+                        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
 
-                        Intent intent = new Intent(CreateAccountEstablishmentActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference establishmentRef = database.getReference("Registered_Users");
+                                    CreateAccountEstablishmentHelperClass helperClass = new CreateAccountEstablishmentHelperClass(accountType, name, location, username,email, password);
+                                    establishmentRef.child(username).setValue(helperClass);
+
+                                    //for login
+                                    DatabaseReference emailDB = database.getReference("Account_Type");
+                                    EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
+                                    emailDB.child(accountType).setValue(dbhelper);
+
+                                    Toast.makeText(CreateAccountEstablishmentActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(CreateAccountEstablishmentActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else {
+                                    Toast.makeText(CreateAccountEstablishmentActivity.this, "could not register! please try again",
+                                            Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    Intent intent = new Intent(CreateAccountEstablishmentActivity.this, CreateAccountEstablishmentActivity.class);
+                                    startActivity(intent);
+                                }
+                                progressDialog.dismiss();
+                            }
+                        });
+
+
+
                     }
 
                 }
