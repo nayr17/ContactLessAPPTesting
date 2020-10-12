@@ -180,11 +180,6 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
                                     CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
                                     myRef.child(username).setValue(helperClass);
 
-                                    //for login
-                                    DatabaseReference emailDB = database.getReference("Account_Type");
-                                    EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
-                                    emailDB.child(accountType).setValue(dbhelper);
-
 
                                     Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
 

@@ -148,11 +148,6 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
                                     CreateAccountEstablishmentHelperClass helperClass = new CreateAccountEstablishmentHelperClass(accountType, name, location, username,email, password);
                                     establishmentRef.child(username).setValue(helperClass);
 
-                                    //for login
-                                    DatabaseReference emailDB = database.getReference("Account_Type");
-                                    EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
-                                    emailDB.child(accountType).setValue(dbhelper);
-
                                     Toast.makeText(CreateAccountEstablishmentActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(CreateAccountEstablishmentActivity.this, MainActivity.class);

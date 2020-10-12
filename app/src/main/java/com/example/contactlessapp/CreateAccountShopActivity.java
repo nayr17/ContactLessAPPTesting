@@ -151,11 +151,6 @@ public class CreateAccountShopActivity extends AppCompatActivity {
                                             CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
                                             shopRef.child(username).setValue(helperClass);
 
-                                            //for login
-                                            DatabaseReference emailDB = database.getReference("Account_Type");
-                                            EmailDBClass dbhelper = new EmailDBClass(accountType, email, password);
-                                            emailDB.child(accountType).setValue(dbhelper);
-
                                             Toast.makeText(CreateAccountShopActivity.this, "Account successfully created!",Toast.LENGTH_SHORT).show();
 
                                             Intent intent = new Intent(CreateAccountShopActivity.this, MainActivity.class);
