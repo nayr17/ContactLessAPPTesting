@@ -1,7 +1,9 @@
 package com.example.contactlessapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +12,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CustomerMainActivity extends AppCompatActivity {
      TextView name;
@@ -21,6 +26,7 @@ public class CustomerMainActivity extends AppCompatActivity {
      TextView username;
      TextView email;
      TextView welcomeDisplay;
+
 
     private FirebaseAuth firebaseAuth;
 
@@ -39,14 +45,40 @@ public class CustomerMainActivity extends AppCompatActivity {
         email = findViewById(R.id.CustomerMain_Email);
         welcomeDisplay = findViewById(R.id.welcomeMessage);
 
-        FirebaseUser getEmailRef = firebaseAuth.getCurrentUser();
-        getEmailRef.getEmail().trim();
-        String emailRef = getEmailRef.toString().trim();
-        Toast.makeText(CustomerMainActivity.this,"email"+ emailRef,Toast.LENGTH_LONG).show();
+        Intent intent = getIntent();
+        String getUsername = intent.getStringExtra("username_input");
+        welcomeDisplay.setText("Hi " + getUsername);
 
-        DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        welcomeDisplay.setText("Hi " + user.getEmail());
+
+        DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername);
+        getUserRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                   name.setText("Name: " + snapshot.child("name").getValue());
+                   address.setText("Address: " + snapshot.child("address").getValue());
+                   phoneNumber.setText("Phone number: " + snapshot.child("phoneNumber").getValue());
+                   barangay.setText("Barangay: " + snapshot.child("barangay").getValue());
+                   username.setText("Username: " + snapshot.child("username").getValue());
+                   email.setText("Email: " +snapshot.child("emailAddress").getValue());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        FirebaseUser getEmailRef = firebaseAuth.getCurrentUser();
+//        getEmailRef.getEmail().trim();
+//        String emailRef = getEmailRef.toString().trim();
+//        Toast.makeText(CustomerMainActivity.this,"email"+ emailRef,Toast.LENGTH_LONG).show();
+
+
+
+
 
 
     }

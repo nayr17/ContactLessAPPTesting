@@ -7,27 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".CustomerMainActivity">
 
-    <ImageView
-        android:id="@+id/CustomerQRcode"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/picborder"
-       android:src="@drawable/qrsample" />
 
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/textViewPersonalInformation"
-        android:layout_below="@+id/CustomerQRcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Personal Information"
         android:layout_centerHorizontal="true"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textColor="#32CD32"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="30dp"/>
 
     <LinearLayout
         android:id="@+id/linear1"
@@ -79,7 +70,7 @@
                 android:textSize="10dp"
                 android:textColor="#000"
                 android:layout_centerHorizontal="true"
-                android:backgroundTint="#32CD32"
+                android:background="#32CD32"
                 android:onClick="CustomerMain_Logout"/>
 
 
@@ -91,7 +82,7 @@
             android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
+            android:paddingLeft="2dp"
             android:layout_alignParentRight="true">
 
             <TextView
@@ -100,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: "
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -109,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="Address: "
                 android:layout_below="@+id/CustomerMain_Name"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -118,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phone number: "
                 android:layout_below="@+id/CustomerMain_Address"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -127,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text="Barangay: "
                 android:layout_below="@+id/CustomerMain_Phone"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -136,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:text="Username: "
                 android:layout_below="@+id/CustomerMain_Barangay"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -145,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:text="Email: "
                 android:layout_below="@+id/CustomerMain_Username"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:layout_marginBottom="10dp"/>
 
 
@@ -158,7 +149,8 @@
 
     
     <Button
-        android:layout_width="200dp"
+        android:id="@+id/btnCustomerMain_Edit"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:text="edit"
         android:layout_below="@id/linear1"
@@ -168,6 +160,19 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="#fff"/>
+
+    <Button
+        android:id="@+id/btnCustomerMain_QRcode"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCustomerMain_Edit"
+        android:layout_centerHorizontal="true"
+        android:text="Qr code"
+        android:textStyle="bold"
+        android:background="@drawable/btncreateuser"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"/>
 
 
 </RelativeLayout>

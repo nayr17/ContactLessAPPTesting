@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String Customer = "Customer";
     private String Shop= "Shop";
     private String Establishment = "Establishment";
+    private  String getEmail;
 
     private ProgressDialog progressDialog;
     private  FirebaseAuth firebaseAuth;
@@ -110,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                        //if username is exist
                        if(snapshot.exists()){
-//                           Toast.makeText(MainActivity.this,"success",Toast.LENGTH_LONG).show();
                            //checks the username account type
                            final DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
                            accountRef.orderByValue().equalTo(Customer).addValueEventListener(new ValueEventListener() {
@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                               public void onDataChange(@NonNull DataSnapshot snapshot) {
                                   //if account type exist
                                   if(snapshot.exists()){
-//                                      Toast.makeText(MainActivity.this, "Customer" ,Toast.LENGTH_LONG ).show();
                                       //checks user password input
                                       accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
                                           @Override
@@ -130,13 +129,13 @@ public class MainActivity extends AppCompatActivity {
                                                       @Override
                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                           if(snapshot.exists()){
-                                                              String getEmail = snapshot.getValue().toString().trim();
-//                                                              Toast.makeText(MainActivity.this, "email: " + getEmail ,Toast.LENGTH_LONG ).show();
+                                                              getEmail = snapshot.getValue().toString();
                                                               firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                   @Override
                                                                   public void onComplete(@NonNull Task<AuthResult> task) {
                                                                       if(task.isSuccessful()){
                                                                           Intent intent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                                                                          intent.putExtra("username_input", username_input.getText().toString());
                                                                           startActivity(intent);
                                                                           finish();
                                                                       }else {
@@ -167,19 +166,16 @@ public class MainActivity extends AppCompatActivity {
                                           @Override
                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
                                               if(snapshot.exists()){
-//                                                  Toast.makeText(MainActivity.this, "Shop" ,Toast.LENGTH_LONG ).show();
                                                   accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
                                                       @Override
                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                           if(snapshot.exists()){
-//                                                              Toast.makeText(MainActivity.this, "password" + snapshot ,Toast.LENGTH_LONG ).show();
                                                               DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
                                                               emailRef.addValueEventListener(new ValueEventListener() {
                                                                   @Override
                                                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                       if(snapshot.exists()){
-                                                                          String getEmail = snapshot.getValue().toString().trim();
-//                                                                          Toast.makeText(MainActivity.this, "email" + getEmail ,Toast.LENGTH_LONG ).show();
+                                                                           getEmail = snapshot.getValue().toString().trim();
                                                                           firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                               @Override
                                                                               public void onComplete(@NonNull Task<AuthResult> task) {
@@ -214,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                                                       @Override
                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                           if(snapshot.exists()){
-//                                                              Toast.makeText(MainActivity.this, "Establishment" ,Toast.LENGTH_LONG ).show();
                                                               accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
                                                                   @Override
                                                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -224,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                                                                               @Override
                                                                               public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                                   if(snapshot.exists()){
-                                                                                      String getEmail = snapshot.getValue().toString().trim();
+                                                                                      getEmail = snapshot.getValue().toString().trim();
                                                                                       firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                                           @Override
                                                                                           public void onComplete(@NonNull Task<AuthResult> task) {
