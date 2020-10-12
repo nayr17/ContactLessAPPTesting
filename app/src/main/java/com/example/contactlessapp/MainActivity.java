@@ -167,14 +167,93 @@ public class MainActivity extends AppCompatActivity {
                                           @Override
                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
                                               if(snapshot.exists()){
-                                                  Toast.makeText(MainActivity.this, "Shop" ,Toast.LENGTH_LONG ).show();
+//                                                  Toast.makeText(MainActivity.this, "Shop" ,Toast.LENGTH_LONG ).show();
+                                                  accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+                                                      @Override
+                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                          if(snapshot.exists()){
+//                                                              Toast.makeText(MainActivity.this, "password" + snapshot ,Toast.LENGTH_LONG ).show();
+                                                              DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
+                                                              emailRef.addValueEventListener(new ValueEventListener() {
+                                                                  @Override
+                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                      if(snapshot.exists()){
+                                                                          String getEmail = snapshot.getValue().toString().trim();
+//                                                                          Toast.makeText(MainActivity.this, "email" + getEmail ,Toast.LENGTH_LONG ).show();
+                                                                          firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                              @Override
+                                                                              public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                                  if(task.isSuccessful()){
+                                                                                      Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+                                                                                      startActivity(intent);
+                                                                                      finish();
+                                                                                  }else {
+                                                                                      Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+                                                                                  }
+                                                                              }
+                                                                          });
+                                                                      }
+                                                                  }
+
+                                                                  @Override
+                                                                  public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                  }
+                                                              });
+                                                          }
+                                                      }
+
+                                                      @Override
+                                                      public void onCancelled(@NonNull DatabaseError error) {
+
+                                                      }
+                                                  });
                                               }
                                               else{
                                                   accountRef.orderByValue().equalTo(Establishment).addValueEventListener(new ValueEventListener() {
                                                       @Override
                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                           if(snapshot.exists()){
-                                                              Toast.makeText(MainActivity.this, "Establishment" ,Toast.LENGTH_LONG ).show();
+//                                                              Toast.makeText(MainActivity.this, "Establishment" ,Toast.LENGTH_LONG ).show();
+                                                              accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+                                                                  @Override
+                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                      if(snapshot.exists()){
+                                                                          DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
+                                                                          emailRef.addValueEventListener(new ValueEventListener() {
+                                                                              @Override
+                                                                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                  if(snapshot.exists()){
+                                                                                      String getEmail = snapshot.getValue().toString().trim();
+                                                                                      firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                                          @Override
+                                                                                          public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                                              if(task.isSuccessful()){
+                                                                                                  Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+                                                                                                  startActivity(intent);
+                                                                                                  finish();
+                                                                                              }else {
+                                                                                                  Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+                                                                                              }
+                                                                                          }
+                                                                                      });
+
+                                                                                  }
+                                                                              }
+
+                                                                              @Override
+                                                                              public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                              }
+                                                                          });
+                                                                      }
+                                                                  }
+
+                                                                  @Override
+                                                                  public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                  }
+                                                              });
                                                           }
                                                       }
 
