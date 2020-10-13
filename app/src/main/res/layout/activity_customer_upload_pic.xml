@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerUploadPicActivity">
+
+    <TextView
+        android:id="@+id/textViewSelectedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="Selected Image"
+        android:textSize="25dp" />
+
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_below="@+id/textViewSelectedImage"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnCustomerActivitySelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectedImage"
+        android:layout_centerInParent="true"
+        android:onClick="btnSelectImage"
+        android:text="choose image" />
+
+    <Button
+        android:id="@+id/btnCustomerActivityUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCustomerActivitySelectImage"
+        android:layout_centerHorizontal="true"
+        android:onClick="btnUploadImage"
+        android:text="upload" />
+</RelativeLayout>

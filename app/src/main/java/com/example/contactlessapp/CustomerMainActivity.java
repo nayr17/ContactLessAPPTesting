@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
 
 public class CustomerMainActivity extends AppCompatActivity {
      TextView name;
@@ -26,9 +32,13 @@ public class CustomerMainActivity extends AppCompatActivity {
      TextView username;
      TextView email;
      TextView welcomeDisplay;
+     ImageView userPic;
+
+     private  String getUsername;
 
 
     private FirebaseAuth firebaseAuth;
+    private StorageReference storageReference;
 
 
     @Override
@@ -36,6 +46,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
         firebaseAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
 
         name = findViewById(R.id.CustomerMain_Name);
         address = findViewById(R.id.CustomerMain_Address);
@@ -44,10 +55,19 @@ public class CustomerMainActivity extends AppCompatActivity {
         username = findViewById(R.id.CustomerMain_Username);
         email = findViewById(R.id.CustomerMain_Email);
         welcomeDisplay = findViewById(R.id.welcomeMessage);
+        userPic = findViewById(R.id.UserPic);
 
         Intent intent = getIntent();
-        String getUsername = intent.getStringExtra("username_input");
+        getUsername = intent.getStringExtra("username_input");
         welcomeDisplay.setText("Hi " + getUsername);
+
+        //Profile photo
+        StorageReference photoRef = storageReference.child(getUsername + "/profile.jpg");
+        photoRef.
+
+
+
+
 
 
         DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername);
@@ -66,9 +86,10 @@ public class CustomerMainActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(CustomerMainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
             }
         });
 //        FirebaseUser getEmailRef = firebaseAuth.getCurrentUser();
@@ -86,6 +107,13 @@ public class CustomerMainActivity extends AppCompatActivity {
     public void CustomerMain_Logout(View view) {
         firebaseAuth.signOut();
         Intent intent = new Intent(CustomerMainActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void btnUpload(View view) {
+        Intent intent = new Intent(CustomerMainActivity.this, CustomerUploadPicActivity.class);
+        intent.putExtra("getUserRef", getUsername);
         startActivity(intent);
     }
 }

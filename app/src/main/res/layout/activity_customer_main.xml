@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,16 +8,16 @@
 
 
     <TextView
-        android:layout_marginTop="60dp"
         android:id="@+id/textViewPersonalInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Personal Information"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:text="Personal Information"
         android:textColor="#32CD32"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp"/>
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/linear1"
@@ -34,110 +33,112 @@
                 android:id="@+id/welcomeMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hi username! "
                 android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:text="Hi username! "
+                android:textColor="#32CD32"
                 android:textSize="12dp"
-                android:textStyle="bold"
-                android:padding="5dp"/>
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_below="@+id/welcomeMessage"
                 android:id="@+id/UserPic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/unnamed"
+                android:layout_below="@+id/welcomeMessage"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"/>
+                android:src="@drawable/unnamed" />
 
             <Button
                 android:id="@+id/btnUploadPic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="upload photo"
                 android:layout_below="@+id/UserPic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:textSize="10dp"/>
+                android:text="upload photo"
+                android:textSize="10dp"
+                android:onClick="btnUpload"/>
 
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
-                android:text="Logout"
                 android:layout_below="@+id/btnUploadPic"
-                android:layout_marginTop="5dp"
-                android:textSize="10dp"
-                android:textColor="#000"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
                 android:background="#32CD32"
-                android:onClick="CustomerMain_Logout"/>
+                android:onClick="CustomerMain_Logout"
+                android:text="Logout"
+                android:textColor="#000"
+                android:textSize="10dp" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/linearInfo"
-            android:layout_below="@+id/textViewPersonalInformation"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPersonalInformation"
+            android:layout_alignParentRight="true"
             android:orientation="vertical"
-            android:paddingLeft="2dp"
-            android:layout_alignParentRight="true">
+            android:paddingLeft="2dp">
 
             <TextView
-                android:layout_marginTop="25dp"
                 android:id="@+id/CustomerMain_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
                 android:text="Name: "
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/CustomerMain_Address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address: "
                 android:layout_below="@+id/CustomerMain_Name"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="Address: "
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/CustomerMain_Phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone number: "
                 android:layout_below="@+id/CustomerMain_Address"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="Phone number: "
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/CustomerMain_Barangay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Barangay: "
                 android:layout_below="@+id/CustomerMain_Phone"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="Barangay: "
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/CustomerMain_Username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username: "
                 android:layout_below="@+id/CustomerMain_Barangay"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="Username: "
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/CustomerMain_Email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email: "
                 android:layout_below="@+id/CustomerMain_Username"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="Email: "
+                android:textSize="14dp" />
 
 
         </RelativeLayout>
@@ -145,21 +146,18 @@
     </LinearLayout>
 
 
-
-
-    
     <Button
         android:id="@+id/btnCustomerMain_Edit"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="edit"
         android:layout_below="@id/linear1"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btnlogin"
         android:layout_marginTop="10dp"
+        android:background="@drawable/btnlogin"
+        android:text="edit"
+        android:textColor="#fff"
         android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#fff"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnCustomerMain_QRcode"
@@ -167,12 +165,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnCustomerMain_Edit"
         android:layout_centerHorizontal="true"
-        android:text="Qr code"
-        android:textStyle="bold"
-        android:background="@drawable/btncreateuser"
         android:layout_marginTop="10dp"
+        android:background="@drawable/btncreateuser"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
         android:padding="15dp"
-        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"/>
+        android:text="Qr code"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

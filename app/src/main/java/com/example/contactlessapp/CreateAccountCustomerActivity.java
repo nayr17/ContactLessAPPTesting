@@ -207,7 +207,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(CreateAccountCustomerActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountCustomerActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             });
