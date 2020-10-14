@@ -1,122 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerMainActivity">
-
-    <ImageView
-        android:id="@+id/CustomerQRcode"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/picborder"
-        android:src="@drawable/qrsample" />
+    tools:context=".CustomerEditInformationActivity">
 
     <TextView
-        android:layout_marginTop="10dp"
         android:id="@+id/textViewPersonalInformation"
-        android:layout_below="@+id/CustomerQRcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Information Form"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:text="Edit Information Form"
+        android:textColor="#8B0000"
         android:textSize="25dp" />
 
-    <ImageView
-        android:id="@+id/UserPic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/unnamed"
-        android:layout_below="@+id/textViewPersonalInformation"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"/>
-
-    <Button
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/linearInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change photo"
-        android:layout_below="@+id/UserPic"
-        android:layout_marginTop="10dp"
-        android:textSize="10dp"
-        android:layout_marginLeft="25dp"/>
+        android:layout_marginTop="20dp">
 
-    <LinearLayout
-        android:id="@+id/linearInfo"
-        android:layout_below="@+id/textViewPersonalInformation"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="140dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-        <EditText
-            android:layout_marginTop="25dp"
-            android:id="@+id/textViewName"
-            android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/UserPic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/unnamed" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter name"
-            android:inputType="text"
-            android:layout_below="@+id/CustomerQRcode"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_below="@+id/textViewPersonalInformation">
 
-        <EditText
-            android:id="@+id/textViewAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter address"
-            android:inputType="text"
-            android:layout_below="@+id/textViewName"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/editInformationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:hint="Enter name"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/textViewPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter phone number: "
-            android:inputType="number"
-            android:layout_below="@+id/textViewAddress"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/editInformationAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editInformationName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:hint="Enter address"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/textViewBarangay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter barangay"
-            android:inputType="text"
-            android:layout_below="@+id/textViewPhone"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/editInformationPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editInformationAddress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:hint="Enter phone number: "
+                android:inputType="number"
+                android:textColor="#000"
+                android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/textViewUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter username"
-            android:layout_below="@+id/textViewBarangay"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/editInformationBarangay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editInformationPhoneNumber"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:hint="Enter barangay"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/textViewEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter email"
-            android:inputType="textEmailAddress"
-            android:layout_below="@+id/textViewUsername"
-            android:layout_centerHorizontal="true"
-            android:textSize="15dp"
-            android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/editInformationUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editInformationBarangay"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:hint="Enter username"
+                android:textColor="#000"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -124,13 +112,13 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="update"
         android:layout_below="@id/linearInfo"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btncreateuser"
-        android:layout_marginTop="10dp"
-        android:textColor="#fff"
-        android:textSize="15dp"/>
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btnqrcode"
+        android:text="update"
+        android:textColor="#000"
+        android:textSize="15dp" />
 
 
 </RelativeLayout>

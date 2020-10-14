@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -35,11 +36,11 @@ public class CustomerMainActivity extends AppCompatActivity {
      ImageView userPic;
 
      private  String getUsername;
+     private  String getUrl;
 
 
     private FirebaseAuth firebaseAuth;
     private StorageReference storageReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         //Profile photo
         StorageReference photoRef = storageReference.child(getUsername + "/profile.jpg");
-        photoRef.
+
 
 
 
@@ -100,8 +101,27 @@ public class CustomerMainActivity extends AppCompatActivity {
 
 
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final DatabaseReference getUrl = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername + "/profilePhotoURL");
+        getUrl.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String result = snapshot.getValue(String.class);
+                getUrl.setValue(result);
+                Picasso.get()
+                        .load(result)
+                        .into(userPic);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void CustomerMain_Logout(View view) {
@@ -115,5 +135,13 @@ public class CustomerMainActivity extends AppCompatActivity {
         Intent intent = new Intent(CustomerMainActivity.this, CustomerUploadPicActivity.class);
         intent.putExtra("getUserRef", getUsername);
         startActivity(intent);
+        finish();
+    }
+
+    public void btnEdit(View view) {
+        Intent intent = new Intent(CustomerMainActivity.this, CustomerEditInformationActivity.class);
+        intent.putExtra("getUsername", getUsername);
+        startActivity(intent);
+        finish();
     }
 }

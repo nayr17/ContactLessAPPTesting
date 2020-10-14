@@ -7,27 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -43,6 +33,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
     private Uri selectedFile; //Uri Object
     private ImageView selectedImage;
     private String username;
+    private String imageRef;
 
 
     @Override
@@ -65,15 +56,41 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference profilePicUpload = storageReference.child(username +"/profile.jpg");
+            final StorageReference profilePicUpload = storageReference.child(username +"/profile.jpg");
             profilePicUpload.putFile(selectedFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+
+                    storageReference.child(username +"/profile.jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageRef = uri.toString().trim();
+                            DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
+                            addPhotoRef.child("profilePhotoURL").setValue(imageRef);
+//                            Toast.makeText(CustomerUploadPicActivity.this , "url :" + imageRef, Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+
+//                    Task<Uri> downloadURL = profilePicUpload.getDownloadUrl();
+//                    downloadURL.addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Uri> task) {
+//                            imageRef = task.toString();
+//                            Toast.makeText(CustomerUploadPicActivity.this , "url :" + imageRef, Toast.LENGTH_SHORT).show();
+//                            DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
+//                            addPhotoRef.child("profilePhotoURL").setValue(imageRef);
+//                        }
+//
                     progressDialog.dismiss();
-                    Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
-                    startActivity(intent);
-                    finish();
+//                    Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -93,6 +110,25 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             })
             ;
         }
+//        final DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username) ;
+//        addPhotoRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    Toast.makeText(CustomerUploadPicActivity.this , "Exist!!!", Toast.LENGTH_SHORT).show();
+//
+//                    Toast.makeText(CustomerUploadPicActivity.this , " :" + addPhotoRef, Toast.LENGTH_SHORT).show();
+//
+//                    addPhotoRef.child("profilePhotoURL").setValue(123456);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 
