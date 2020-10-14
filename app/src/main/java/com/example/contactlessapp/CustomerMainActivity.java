@@ -62,8 +62,8 @@ public class CustomerMainActivity extends AppCompatActivity {
         welcomeDisplay.setText("Hi " + getUsername);
 
         //Profile photo
-        StorageReference photoRef = storageReference.child(getUsername + "/profile.jpg");
-        photoRef.
+//        StorageReference photoRef = storageReference.child(getUsername + "/profile.jpg");
+//        photoRef.
 
 
 
