@@ -17,8 +17,7 @@
         android:text="Personal Information"
         android:textColor="#32CD32"
         android:textSize="30dp"
-        android:textStyle="bold"
-        android:background="#000"/>
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/linear1"
@@ -32,15 +31,16 @@
 
             <TextView
                 android:id="@+id/welcomeMessage"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:padding="5dp"
                 android:text="Hi username! "
-                android:textColor="#32CD32"
+                android:textColor="#000"
+                android:gravity="center"
                 android:textSize="12dp"
-                android:background="#000"
-                android:textStyle="bold" />
+                android:background="@drawable/btnqrcode"
+                android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/UserPic"
@@ -50,7 +50,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/unnamed" />
+                android:src="@drawable/unnamed"/>
 
             <Button
                 android:id="@+id/btnUploadPic"
@@ -70,10 +70,10 @@
                 android:layout_below="@+id/btnUploadPic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:background="#32CD32"
+                android:background="@color/cardview_dark_background"
                 android:onClick="CustomerMain_Logout"
                 android:text="Logout"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="10dp" />
 
 
@@ -154,6 +154,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Linear2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear1"
@@ -167,7 +168,7 @@
             android:layout_below="@id/linear1"
             android:background="@drawable/btnlogin"
             android:text="edit"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="15dp"
             android:padding="15dp"
             android:textStyle="bold"
@@ -183,12 +184,19 @@
             android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
             android:padding="15dp"
             android:text="Qr code"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"/>
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/generatedQRCode"
+        android:layout_below="@+id/Linear2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

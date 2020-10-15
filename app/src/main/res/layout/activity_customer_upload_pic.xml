@@ -14,6 +14,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:text="Selected Image"
+        android:textColor="#32CD32"
         android:textSize="25dp" />
 
     <ImageView
@@ -23,21 +24,33 @@
         android:layout_below="@+id/textViewSelectedImage"
         android:layout_centerHorizontal="true" />
 
+
     <Button
         android:id="@+id/btnCustomerActivitySelectImage"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedImage"
         android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btnqrcode"
         android:onClick="btnSelectImage"
-        android:text="choose image" />
+        android:text="select image"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/btnCustomerActivityUploadImage"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnCustomerActivitySelectImage"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btnlogin"
         android:onClick="btnUploadImage"
-        android:text="upload" />
+        android:text="save"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+
 </RelativeLayout>

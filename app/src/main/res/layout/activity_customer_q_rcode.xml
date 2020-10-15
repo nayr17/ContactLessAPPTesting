@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerQRcodeActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/no"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contactless"
+        android:layout_below="@id/imageView"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#32CD32"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/appname2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logbook System"
+        android:layout_below="@id/appname"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#32CD32"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_below="@+id/appname2"
+        android:id="@+id/userQrCode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/qrsample" />
+
+    <ImageView
+        android:id="@+id/scanME"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/appname2"
+        android:layout_width="203dp"
+        android:layout_height="204dp"
+        android:src="@drawable/wow" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scanME"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/customerQrCode_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textSize="20dp"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/customerQrCode_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customerQrCode_name"
+            android:text="Address: "
+            android:textSize="20dp"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/customerQrCode_phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customerQrCode_address"
+            android:text="Phone number: "
+            android:textSize="20dp"
+            android:layout_margin="5dp"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -21,9 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.zxing.WriterException;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 
 public class CustomerMainActivity extends AppCompatActivity {
      TextView name;
@@ -34,9 +40,10 @@ public class CustomerMainActivity extends AppCompatActivity {
      TextView email;
      TextView welcomeDisplay;
      ImageView userPic;
+     ImageView generatredQR_code;
 
      private  String getUsername;
-     private  String getUrl;
+     String QR_ID = "contactlessapp-";
 
 
     private FirebaseAuth firebaseAuth;
@@ -57,15 +64,12 @@ public class CustomerMainActivity extends AppCompatActivity {
         email = findViewById(R.id.CustomerMain_Email);
         welcomeDisplay = findViewById(R.id.welcomeMessage);
         userPic = findViewById(R.id.UserPic);
+        generatredQR_code = findViewById(R.id.generatedQRCode);
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("username_input");
-        welcomeDisplay.setText("Hi " + getUsername);
-
-        //Profile photo
-        StorageReference photoRef = storageReference.child(getUsername + "/profile.jpg");
-
-
+        welcomeDisplay.setText("USER: " + getUsername);
+        UserGenerateQR_code();
 
 
 
@@ -143,5 +147,19 @@ public class CustomerMainActivity extends AppCompatActivity {
         intent.putExtra("getUsername", getUsername);
         startActivity(intent);
         finish();
+    }
+    public void UserGenerateQR_code(){
+//        generatredQR_code.setVisibility(View.INVISIBLE);
+        QR_ID = QR_ID + getUsername;
+        String data = QR_ID.trim();
+        QRGEncoder qrgEncoder = new QRGEncoder(data,null, QRGContents.Type.TEXT,250);
+        qrgEncoder.setColorBlack(Color.rgb(50,205,50));
+        qrgEncoder.setColorWhite(Color.rgb(0,0,0));
+        //Get QR code as bitmap
+        Bitmap bitmap = qrgEncoder.getBitmap();
+        //set bitmap as image
+        generatredQR_code.setImageBitmap(bitmap);
+
+        Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
     }
 }
