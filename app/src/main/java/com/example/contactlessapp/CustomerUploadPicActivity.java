@@ -41,7 +41,6 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upload_pic);
         storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-
          selectedImage = findViewById(R.id.selectedImage);
 
          Intent intent = getIntent();

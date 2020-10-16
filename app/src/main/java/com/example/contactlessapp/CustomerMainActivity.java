@@ -1,19 +1,25 @@
 package com.example.contactlessapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,10 +29,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.zxing.WriterException;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -148,18 +157,44 @@ public class CustomerMainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
     public void UserGenerateQR_code(){
 //        generatredQR_code.setVisibility(View.INVISIBLE);
         QR_ID = QR_ID + getUsername;
         String data = QR_ID.trim();
         QRGEncoder qrgEncoder = new QRGEncoder(data,null, QRGContents.Type.TEXT,250);
         qrgEncoder.setColorBlack(Color.rgb(50,205,50));
-        qrgEncoder.setColorWhite(Color.rgb(0,0,0));
+        qrgEncoder.setColorWhite(Color.TRANSPARENT);
         //Get QR code as bitmap
         Bitmap bitmap = qrgEncoder.getBitmap();
         //set bitmap as image
         generatredQR_code.setImageBitmap(bitmap);
 
+
+
+
+
+        generatredQR_code.setDrawingCacheEnabled(true);
+        generatredQR_code.buildDrawingCache();
+        Bitmap config = ((BitmapDrawable)generatredQR_code.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        config.compress(Bitmap.CompressFormat.PNG,250,baos);
+
+        String asd = generatredQR_code.getResources().toString();
+        Uri path = Uri.parse(asd);
+
+        StorageReference addQR_photo = storageReference.child(getUsername + "/QR_photo.png");
+        addQR_photo.putFile(path);
+
+
+
+
+
+
+
         Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
     }
+
+
+
 }
