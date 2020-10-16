@@ -55,7 +55,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference profilePicUpload = storageReference.child(username +"/profile.jpg");
+            final StorageReference profilePicUpload = storageReference.child(username +"/profile");
             profilePicUpload.putFile(selectedFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {

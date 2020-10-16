@@ -2,18 +2,24 @@ package com.example.contactlessapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,7 +41,10 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.util.Random;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -63,7 +72,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
         firebaseAuth = FirebaseAuth.getInstance();
-        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
+
 
         name = findViewById(R.id.CustomerMain_Name);
         address = findViewById(R.id.CustomerMain_Address);
@@ -157,43 +166,41 @@ public class CustomerMainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
+
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.PNG, 50, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Qr_Code", null);
+        return Uri.parse(path);
+    }
+
+    @RequiresApi
     public void UserGenerateQR_code(){
-//        generatredQR_code.setVisibility(View.INVISIBLE);
+        generatredQR_code.setVisibility(View.INVISIBLE);
         QR_ID = QR_ID + getUsername;
         String data = QR_ID.trim();
-        QRGEncoder qrgEncoder = new QRGEncoder(data,null, QRGContents.Type.TEXT,250);
+        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
         qrgEncoder.setColorBlack(Color.rgb(50,205,50));
-        qrgEncoder.setColorWhite(Color.TRANSPARENT);
         //Get QR code as bitmap
         Bitmap bitmap = qrgEncoder.getBitmap();
         //set bitmap as image
         generatredQR_code.setImageBitmap(bitmap);
+//        getImageUri(this,bitmap);
 
-
-
-
-
-        generatredQR_code.setDrawingCacheEnabled(true);
-        generatredQR_code.buildDrawingCache();
-        Bitmap config = ((BitmapDrawable)generatredQR_code.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        config.compress(Bitmap.CompressFormat.PNG,250,baos);
-
-        String asd = generatredQR_code.getResources().toString();
-        Uri path = Uri.parse(asd);
-
-        StorageReference addQR_photo = storageReference.child(getUsername + "/QR_photo.png");
-        addQR_photo.putFile(path);
-
-
-
-
-
-
+        //on progress
+        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
+        StorageReference profilePicUpload = storageReference.child(getUsername + "/Qr_Code");
+        profilePicUpload.putFile(getImageUri(this, bitmap)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(CustomerMainActivity.this,"success!!", Toast.LENGTH_LONG).show();
+            }
+        });
 
         Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
     }
+
 
 
 
