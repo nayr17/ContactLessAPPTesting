@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,14 +50,12 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private  FirebaseAuth firebaseAuth;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
+
         if(firebaseAuth.getCurrentUser()!= null){
             firebaseAuth.signOut();
         }
@@ -87,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     public void btnLogin(View view) {
          username = username_input.getText().toString().trim();

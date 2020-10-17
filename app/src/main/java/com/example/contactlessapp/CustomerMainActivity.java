@@ -50,21 +50,22 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class CustomerMainActivity extends AppCompatActivity {
-     TextView name;
-     TextView address;
-     TextView phoneNumber;
-     TextView barangay;
-     TextView username;
-     TextView email;
-     TextView welcomeDisplay;
-     ImageView userPic;
-     ImageView generatredQR_code;
+    TextView name;
+    TextView address;
+    TextView phoneNumber;
+    TextView barangay;
+    TextView username;
+    TextView email;
+    TextView welcomeDisplay;
+    ImageView userPic;
+    ImageView generatredQR_code;
 
-     private  String getUsername;
-     String QR_ID = "contactlessapp-";
+    private String getUsername;
 
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference getUserRef;
     private StorageReference storageReference;
 
     @Override
@@ -72,7 +73,6 @@ public class CustomerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
         firebaseAuth = FirebaseAuth.getInstance();
-
 
         name = findViewById(R.id.CustomerMain_Name);
         address = findViewById(R.id.CustomerMain_Address);
@@ -86,11 +86,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("username_input");
-        welcomeDisplay.setText("USER: " + getUsername);
-        UserGenerateQR_code();
-
-
-
+        welcomeDisplay.setText("Hi: " + getUsername);
 
 
         DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername);
@@ -98,13 +94,13 @@ public class CustomerMainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                   name.setText("Name: " + snapshot.child("name").getValue());
-                   address.setText("Address: " + snapshot.child("address").getValue());
-                   phoneNumber.setText("Phone number: " + snapshot.child("phoneNumber").getValue());
-                   barangay.setText("Barangay: " + snapshot.child("barangay").getValue());
-                   username.setText("Username: " + snapshot.child("username").getValue());
-                   email.setText("Email: " +snapshot.child("emailAddress").getValue());
+                if (snapshot.exists()) {
+                    name.setText("Name: " + snapshot.child("name").getValue());
+                    address.setText("Address: " + snapshot.child("address").getValue());
+                    phoneNumber.setText("Phone number: " + snapshot.child("phoneNumber").getValue());
+                    barangay.setText("Barangay: " + snapshot.child("barangay").getValue());
+                    username.setText("Username: " + snapshot.child("username").getValue());
+                    email.setText("Email: " + snapshot.child("emailAddress").getValue());
 
                 }
             }
@@ -119,9 +115,6 @@ public class CustomerMainActivity extends AppCompatActivity {
 //        getEmailRef.getEmail().trim();
 //        String emailRef = getEmailRef.toString().trim();
 //        Toast.makeText(CustomerMainActivity.this,"email"+ emailRef,Toast.LENGTH_LONG).show();
-
-
-
 
     }
 
@@ -167,41 +160,57 @@ public class CustomerMainActivity extends AppCompatActivity {
         finish();
     }
 
-
-    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.PNG, 50, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Qr_Code", null);
-        return Uri.parse(path);
+    public void uploadQR_value() {
+        String QR_Value = "contactlessapp-";
+        QR_Value = QR_Value + getUsername;
+        String data = QR_Value.trim();
+        getUserRef = firebaseDatabase.getReference("Registered_Users/" + getUsername);
+        getUserRef.child("QR_Text_ID").setValue(data);
     }
 
-    @RequiresApi
-    public void UserGenerateQR_code(){
-        generatredQR_code.setVisibility(View.INVISIBLE);
-        QR_ID = QR_ID + getUsername;
-        String data = QR_ID.trim();
-        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
-        qrgEncoder.setColorBlack(Color.rgb(50,205,50));
-        //Get QR code as bitmap
-        Bitmap bitmap = qrgEncoder.getBitmap();
-        //set bitmap as image
-        generatredQR_code.setImageBitmap(bitmap);
-//        getImageUri(this,bitmap);
-
-        //on progress
-        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-        StorageReference profilePicUpload = storageReference.child(getUsername + "/Qr_Code");
-        profilePicUpload.putFile(getImageUri(this, bitmap)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(CustomerMainActivity.this,"success!!", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
+    public void btnCustomerQRcode(View view) {
+        uploadQR_value();
+        Intent intent = new Intent(CustomerMainActivity.this, CustomerQRcodeActivity.class);
+        intent.putExtra("getUsername", getUsername);
+        startActivity(intent);
+        finish();
     }
 
 
+//    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
+//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//        inImage.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+//        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Qr_Code", null);
+//        return Uri.parse(path);
+//    }
+
+//    public void UserGenerateQR_code(){
+//
+//
+//        generatredQR_code.setVisibility(View.INVISIBLE);
+//        QR_ID = QR_ID + getUsername;
+//        String data = QR_ID.trim();
+//        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
+//        qrgEncoder.setColorBlack(Color.rgb(50,205,50));
+//        //Get QR code as bitmap
+//        Bitmap bitmap = qrgEncoder.getBitmap();
+//        //set bitmap as image
+//        generatredQR_code.setImageBitmap(bitmap);
+//
+//
+//
+//        //on progress
+//        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
+//        StorageReference profilePicUpload = storageReference.child(getUsername + "/Qr_Code");
+//        profilePicUpload.putFile(getImageUri(this, bitmap)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                Toast.makeText(CustomerMainActivity.this,"success!!", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//        Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
+//    }
 
 
 }

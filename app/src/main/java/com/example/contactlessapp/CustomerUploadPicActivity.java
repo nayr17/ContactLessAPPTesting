@@ -59,19 +59,16 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             profilePicUpload.putFile(selectedFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
-
-                    storageReference.child(username +"/profile.jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    storageReference.child(username +"/profile").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             imageRef = uri.toString().trim();
                             DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
                             addPhotoRef.child("profilePhotoURL").setValue(imageRef);
-//                            Toast.makeText(CustomerUploadPicActivity.this , "url :" + imageRef, Toast.LENGTH_SHORT).show();
-
                             Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
                             startActivity(intent);
-                            finish();
+
                         }
                     });
 
@@ -153,6 +150,8 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
 
     public void btnUploadImage(View view) {
         uploadFile();
+        finish();
+
     }
 
     private  void fileChooser(){
