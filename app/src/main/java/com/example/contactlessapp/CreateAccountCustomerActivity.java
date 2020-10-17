@@ -93,7 +93,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
     }
     private boolean checkPasswordChar(EditText CustomerPass){
         String password = CustomerPass.getText().toString();
-        if(password.length()>=6){
+        if(password.length()>=5){
             return  true;
         }else {
             CustomerPass.setError("must be aleast 6 characters");
@@ -102,7 +102,7 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
     }
     private boolean checkConfirmPasswordChar(EditText CustomerConfirmPassword){
         String password = CustomerConfirmPassword.getText().toString();
-        if(password.length()<=5){
+        if(password.length()>=5){
             return  true;
         }else {
             CustomerConfirmPassword.setError("must be aleast 6 characters");

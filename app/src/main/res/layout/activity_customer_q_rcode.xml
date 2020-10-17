@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/no" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:text="Contactless"
         android:textColor="#32CD32"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <TextView
@@ -33,17 +33,28 @@
         android:layout_centerHorizontal="true"
         android:text="Logbook System"
         android:textColor="#32CD32"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textStyle="bold" />
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/CustomerText"-->
+<!--        android:layout_below="@id/appname2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Customer"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="50dp"/>-->
 
     <ImageView
         android:id="@+id/userQrCode"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/appname2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/qrsample" />
+        android:background="@drawable/btnqrcode"
+        android:src="@drawable/qrsample"
+        android:layout_marginTop="20dp"/>
 
     <ImageView
         android:id="@+id/scanME"
@@ -51,82 +62,83 @@
         android:layout_height="204dp"
         android:layout_below="@id/appname2"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="85dp"
         android:src="@drawable/wow" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanME"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/customerQrCode_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:ems="15"
-            android:gravity="center"
-            android:text="Name: "
-            android:textSize="15sp" />
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/scanME"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="20dp">-->
 
-        <TextView
-            android:id="@+id/customerQrCode_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/customerQrCode_name"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:ems="15"
-            android:gravity="center"
-            android:text="Address:"
-            android:textSize="15sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/customerQrCode_name"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:ems="15"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Name: "-->
+<!--            android:textSize="15sp" />-->
 
-        <TextView
-            android:id="@+id/customerQrCode_barangay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/customerQrCode_address"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:ems="15"
-            android:gravity="center"
-            android:text="Barangay:"
-            android:textSize="15sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/customerQrCode_address"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/customerQrCode_name"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:ems="15"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Address:"-->
+<!--            android:textSize="15sp" />-->
 
-        <TextView
-            android:id="@+id/customerQrCode_phoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/customerQrCode_barangay"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:ems="15"
-            android:gravity="center"
-            android:text="Phone number: "
-            android:textSize="15sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/customerQrCode_barangay"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/customerQrCode_address"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:ems="15"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Barangay:"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/customerQrCode_phoneNumber"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/customerQrCode_barangay"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:ems="15"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Phone number: "-->
+<!--            android:textSize="15sp" />-->
 
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
 
 </RelativeLayout>

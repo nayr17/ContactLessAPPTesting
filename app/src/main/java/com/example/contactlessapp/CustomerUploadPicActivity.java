@@ -150,7 +150,6 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
 
     public void btnUploadImage(View view) {
         uploadFile();
-        finish();
 
     }
 

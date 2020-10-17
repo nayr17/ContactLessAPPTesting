@@ -150,14 +150,13 @@ public class CustomerMainActivity extends AppCompatActivity {
         Intent intent = new Intent(CustomerMainActivity.this, CustomerUploadPicActivity.class);
         intent.putExtra("getUserRef", getUsername);
         startActivity(intent);
-        finish();
     }
 
     public void btnEdit(View view) {
         Intent intent = new Intent(CustomerMainActivity.this, CustomerEditInformationActivity.class);
         intent.putExtra("getUsername", getUsername);
         startActivity(intent);
-        finish();
+
     }
 
     public void uploadQR_value() {
@@ -173,7 +172,6 @@ public class CustomerMainActivity extends AppCompatActivity {
         Intent intent = new Intent(CustomerMainActivity.this, CustomerQRcodeActivity.class);
         intent.putExtra("getUsername", getUsername);
         startActivity(intent);
-        finish();
     }
 
 
