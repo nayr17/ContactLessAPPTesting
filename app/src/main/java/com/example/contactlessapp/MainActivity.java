@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,ForgotPassActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(MainActivity.this,"you clicked forgot pass",Toast.LENGTH_LONG).show();
-                finish();
+                //Toast.makeText(MainActivity.this,"you clicked forgot pass",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,CreateAccountActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(MainActivity.this,"you clicked create account",Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this,"you clicked create account",Toast.LENGTH_LONG).show();
                 finish();
             }
         });
