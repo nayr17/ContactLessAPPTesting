@@ -62,12 +62,12 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:textSize="15dp"
             android:background="@drawable/edit_text_email"
-            android:hint="email address"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:drawablePadding="20dp"
-            android:paddingLeft="20dp"/>
+            android:hint="email address"
+            android:paddingLeft="20dp"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/resetpassbutton_xml"
