@@ -167,12 +167,12 @@ public class CustomerMainActivity extends AppCompatActivity {
         getUserRef.child("QR_Text_ID").setValue(data);
     }
 
-    public void btnCustomerQRcode(View view) {
-        uploadQR_value();
-        Intent intent = new Intent(CustomerMainActivity.this, CustomerQRcodeActivity.class);
-        intent.putExtra("getUsername", getUsername);
-        startActivity(intent);
-    }
+//    public void btnCustomerQRcode(View view) {
+//        uploadQR_value();
+//        Intent intent = new Intent(CustomerMainActivity.this, CustomerQRcodeActivity.class);
+//        intent.putExtra("getUsername", getUsername);
+//        startActivity(intent);
+//    }
 
 
 //    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
