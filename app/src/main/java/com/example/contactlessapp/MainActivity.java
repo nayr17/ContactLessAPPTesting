@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                                                                               public void onComplete(@NonNull Task<AuthResult> task) {
                                                                                   if(task.isSuccessful()){
                                                                                       Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+                                                                                      intent.putExtra("username_input", username_input.getText().toString());
                                                                                       startActivity(intent);
                                                                                       finish();
                                                                                   }else {
@@ -230,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
                                                                                           public void onComplete(@NonNull Task<AuthResult> task) {
                                                                                               if(task.isSuccessful()){
                                                                                                   Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+                                                                                                  intent.putExtra("username_input", username_input.getText().toString());
                                                                                                   startActivity(intent);
                                                                                                   finish();
                                                                                               }else {

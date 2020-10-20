@@ -1,8 +1,10 @@
 package com.example.contactlessapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 
 public class RecentScanMainActivity extends AppCompatActivity {
 
@@ -10,5 +12,8 @@ public class RecentScanMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_scan_main);
+
     }
+
+
 }

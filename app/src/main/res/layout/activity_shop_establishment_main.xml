@@ -22,7 +22,8 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_baseline_assignment_24"
-                android:backgroundTint="#D3D3D3"/>
+                android:backgroundTint="#D3D3D3"
+                android:onClick="btnRecentScan"/>
 
 
         </RelativeLayout>
@@ -41,12 +42,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: "
+        android:layout_margin="20dp"
+        android:layout_below="@+id/linearNavigation"/>
+
 
     <RelativeLayout
         android:id="@+id/relativeDisplayInfo"
-        android:layout_below="@id/linearNavigation"
+        android:layout_below="@id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="440dp">
+        android:layout_height="400dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -196,7 +205,8 @@
         android:layout_marginTop="10dp"
         android:clickable="true"
         app:backgroundTint="?attr/colorButtonNormal"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        android:layout_marginStart="40dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionScan"
@@ -207,24 +217,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:clickable="true"
+        android:onClick="btnScan"
         android:src="@drawable/ic_baseline_photo_camera_24"
-        app:backgroundTint="@android:color/holo_blue_bright"
-        android:onClick="btnScan"/>
+        app:backgroundTint="@android:color/holo_blue_bright"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="asdasdasd"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/floatingActionButtonBack"/>
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="asdasdasd"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"/>
+
 
 
 </RelativeLayout>
