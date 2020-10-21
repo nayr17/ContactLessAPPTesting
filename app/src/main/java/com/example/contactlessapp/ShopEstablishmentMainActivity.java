@@ -110,51 +110,50 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
     public void getRefScan(){
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
-        String date = format.format(today);
+        final String date = format.format(today);
         getDate.setText(date);
 
-        String currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+        final String currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
         getTime.setText(currentTime);
 
-//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//        DatabaseReference getRef = firebaseDatabase.getReference("Registered_Users/" + QR_ID_edited );
-//        getRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    String address = snapshot.child("address").getValue().toString().trim();
-//                    String barangay = snapshot.child("barangay").getValue().toString().trim();
-//                    String email = snapshot.child("emailAddress").getValue().toString().trim();
-//                    String name = snapshot.child("name").getValue().toString().trim();
-//                    String phoneNumber = snapshot.child("phoneNumber").getValue().toString().trim();
-//                    String username = snapshot.child("username").getValue().toString().trim();
-//
-//
-//                    DatabaseReference uploadRef = FirebaseDatabase.getInstance().getReference("Scanned Customer");
-//                    GetCustomerInfo helper = new GetCustomerInfo( address, barangay, email, name, phoneNumber, username);
-//                    uploadRef.child(Username).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isComplete()){
-//                                Toast.makeText(ShopEstablishmentMainActivity.this,"Success!!", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//
-//
-//
-//
-//                }
-//                else{
-//                    Toast.makeText(ShopEstablishmentMainActivity.this,"customer has not been registered", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference getRef = firebaseDatabase.getReference("Registered_Users/" + QR_ID_edited );
+        getRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String address = snapshot.child("address").getValue().toString().trim();
+                    String barangay = snapshot.child("barangay").getValue().toString().trim();
+                    String email = snapshot.child("emailAddress").getValue().toString().trim();
+                    String name = snapshot.child("name").getValue().toString().trim();
+                    String phoneNumber = snapshot.child("phoneNumber").getValue().toString().trim();
+                    String username = snapshot.child("username").getValue().toString().trim();
+
+
+                    DatabaseReference uploadRef = FirebaseDatabase.getInstance().getReference("Scanned Customer");
+                    GetCustomerInfo helper = new GetCustomerInfo( address, barangay, email, name, phoneNumber, username, date, currentTime);
+                    uploadRef.child(Username).child(name).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isComplete()){
+                                Toast.makeText(ShopEstablishmentMainActivity.this,"Success!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                }
+                else{
+                    Toast.makeText(ShopEstablishmentMainActivity.this,"customer has not been registered", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
 

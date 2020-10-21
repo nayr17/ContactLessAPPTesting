@@ -93,7 +93,7 @@ public class CustomerQRcodeActivity extends AppCompatActivity {
                     Toast.makeText(CustomerQRcodeActivity.this," " + QR_text_ID, Toast.LENGTH_SHORT).show();
                     String data = QR_text_ID;
                     QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
-                    qrgEncoder.setColorBlack(Color.rgb(250,205,50));
+//                    qrgEncoder.setColorBlack(Color.rgb(250,205,50));
                     //Get QR code as bitmap
                     Bitmap bitmap = qrgEncoder.getBitmap();
                     //set bitmap as image
