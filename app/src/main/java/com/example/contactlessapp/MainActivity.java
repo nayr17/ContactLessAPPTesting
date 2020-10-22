@@ -108,189 +108,189 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         //checks username input
-        DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
-        loginRef.orderByChild("username").equalTo(username)
-               .addValueEventListener(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       //if username is exist
-                       if(snapshot.exists()){
-                           //checks the username account type
-                           final DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
-                           accountRef.orderByValue().equalTo(Customer).addValueEventListener(new ValueEventListener() {
-                              @Override
-                              public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                  //if account type exist
-                                  if(snapshot.exists()){
-                                      //checks user password input
-                                      accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
-                                          @Override
-                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                              //if exist or match
-                                              if(snapshot.exists()){
-                                                  DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/emailAddress");
-                                                  emailRef.addValueEventListener(new ValueEventListener() {
-                                                      @Override
-                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                          if(snapshot.exists()){
-                                                              getEmail = snapshot.getValue().toString();
-                                                              firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                                  @Override
-                                                                  public void onComplete(@NonNull Task<AuthResult> task) {
-                                                                      if(task.isSuccessful()){
-                                                                          Intent intent = new Intent(MainActivity.this, CustomerMainActivity.class);
-                                                                          intent.putExtra("username_input", username_input.getText().toString());
-                                                                          startActivity(intent);
-                                                                          finish();
-                                                                      }else {
-                                                                          Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
-                                                                      }
-                                                                  }
-                                                              });
-                                                          }
-                                                      }
-
-                                                      @Override
-                                                      public void onCancelled(@NonNull DatabaseError error) {
-
-                                                      }
-                                                  });
-
-                                              }
-                                          }
-
-                                          @Override
-                                          public void onCancelled(@NonNull DatabaseError error) {
-
-                                          }
-                                      });
-                                  }
-                                  else{
-                                      accountRef.orderByValue().equalTo(Shop).addValueEventListener(new ValueEventListener() {
-                                          @Override
-                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                              if(snapshot.exists()){
-                                                  accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
-                                                      @Override
-                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                          if(snapshot.exists()){
-                                                              DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
-                                                              emailRef.addValueEventListener(new ValueEventListener() {
-                                                                  @Override
-                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                      if(snapshot.exists()){
-                                                                           getEmail = snapshot.getValue().toString().trim();
-                                                                          firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                                              @Override
-                                                                              public void onComplete(@NonNull Task<AuthResult> task) {
-                                                                                  if(task.isSuccessful()){
-                                                                                      Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
-                                                                                      startActivity(intent);
-                                                                                      finish();
-                                                                                  }else {
-                                                                                      Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
-                                                                                  }
-                                                                              }
-                                                                          });
-                                                                      }
-                                                                  }
-
-                                                                  @Override
-                                                                  public void onCancelled(@NonNull DatabaseError error) {
-
-                                                                  }
-                                                              });
-                                                          }
-                                                      }
-
-                                                      @Override
-                                                      public void onCancelled(@NonNull DatabaseError error) {
-
-                                                      }
-                                                  });
-                                              }
-                                              else{
-                                                  accountRef.orderByValue().equalTo(Establishment).addValueEventListener(new ValueEventListener() {
-                                                      @Override
-                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                          if(snapshot.exists()){
-                                                              accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
-                                                                  @Override
-                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                      if(snapshot.exists()){
-                                                                          DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
-                                                                          emailRef.addValueEventListener(new ValueEventListener() {
-                                                                              @Override
-                                                                              public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                                  if(snapshot.exists()){
-                                                                                      getEmail = snapshot.getValue().toString().trim();
-                                                                                      firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                                                          @Override
-                                                                                          public void onComplete(@NonNull Task<AuthResult> task) {
-                                                                                              if(task.isSuccessful()){
-                                                                                                  Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
-                                                                                                  startActivity(intent);
-                                                                                                  finish();
-                                                                                              }else {
-                                                                                                  Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
-                                                                                              }
-                                                                                          }
-                                                                                      });
-
-                                                                                  }
-                                                                              }
-
-                                                                              @Override
-                                                                              public void onCancelled(@NonNull DatabaseError error) {
-                                                                                  Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                                                                              }
-                                                                          });
-                                                                      }
-                                                                  }
-
-                                                                  @Override
-                                                                  public void onCancelled(@NonNull DatabaseError error) {
-                                                                      Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                                                                  }
-                                                              });
-                                                          }
-                                                      }
-
-                                                      @Override
-                                                      public void onCancelled(@NonNull DatabaseError error) {
-                                                          Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                                                      }
-                                                  });
-                                              }
-                                          }
-
-                                          @Override
-                                          public void onCancelled(@NonNull DatabaseError error) {
-                                              Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                                          }
-                                      });
-                                  }
-
-                              }
-
-                              @Override
-                              public void onCancelled(@NonNull DatabaseError error) {
-                                  Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                              }
-                          });
-                       }
-                       else {
-                           Toast.makeText(MainActivity.this, "user not found, please try again", Toast.LENGTH_LONG).show();
-                       }progressDialog.dismiss();
-                   }
-
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError error) {
-                       Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
-                   }
-
-
-               });
+//        DatabaseReference loginRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
+//        loginRef.orderByChild("username").equalTo(username)
+//               .addValueEventListener(new ValueEventListener() {
+//                   @Override
+//                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                       //if username is exist
+//                       if(snapshot.exists()){
+//                           //checks the username account type
+//                           final DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
+//                           accountRef.orderByValue().equalTo(Customer).addValueEventListener(new ValueEventListener() {
+//                              @Override
+//                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                  //if account type exist
+//                                  if(snapshot.exists()){
+//                                      //checks user password input
+//                                      accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+//                                          @Override
+//                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                              //if exist or match
+//                                              if(snapshot.exists()){
+//                                                  DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/emailAddress");
+//                                                  emailRef.addValueEventListener(new ValueEventListener() {
+//                                                      @Override
+//                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                          if(snapshot.exists()){
+//                                                              getEmail = snapshot.getValue().toString();
+//                                                              firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                                                  @Override
+//                                                                  public void onComplete(@NonNull Task<AuthResult> task) {
+//                                                                      if(task.isSuccessful()){
+//                                                                          Intent intent = new Intent(MainActivity.this, CustomerMainActivity.class);
+//                                                                          intent.putExtra("username_input", username_input.getText().toString());
+//                                                                          startActivity(intent);
+//                                                                          finish();
+//                                                                      }else {
+//                                                                          Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+//                                                                      }
+//                                                                  }
+//                                                              });
+//                                                          }
+//                                                      }
+//
+//                                                      @Override
+//                                                      public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                                      }
+//                                                  });
+//
+//                                              }
+//                                          }
+//
+//                                          @Override
+//                                          public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                          }
+//                                      });
+//                                  }
+//                                  else{
+//                                      accountRef.orderByValue().equalTo(Shop).addValueEventListener(new ValueEventListener() {
+//                                          @Override
+//                                          public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                              if(snapshot.exists()){
+//                                                  accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+//                                                      @Override
+//                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                          if(snapshot.exists()){
+//                                                              DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
+//                                                              emailRef.addValueEventListener(new ValueEventListener() {
+//                                                                  @Override
+//                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                                      if(snapshot.exists()){
+//                                                                           getEmail = snapshot.getValue().toString().trim();
+//                                                                          firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                                                              @Override
+//                                                                              public void onComplete(@NonNull Task<AuthResult> task) {
+//                                                                                  if(task.isSuccessful()){
+//                                                                                      Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+//                                                                                      startActivity(intent);
+//                                                                                      finish();
+//                                                                                  }else {
+//                                                                                      Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+//                                                                                  }
+//                                                                              }
+//                                                                          });
+//                                                                      }
+//                                                                  }
+//
+//                                                                  @Override
+//                                                                  public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                                                  }
+//                                                              });
+//                                                          }
+//                                                      }
+//
+//                                                      @Override
+//                                                      public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                                      }
+//                                                  });
+//                                              }
+//                                              else{
+//                                                  accountRef.orderByValue().equalTo(Establishment).addValueEventListener(new ValueEventListener() {
+//                                                      @Override
+//                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                          if(snapshot.exists()){
+//                                                              accountRef.orderByValue().equalTo(password).addValueEventListener(new ValueEventListener() {
+//                                                                  @Override
+//                                                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                                      if(snapshot.exists()){
+//                                                                          DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username + "/email");
+//                                                                          emailRef.addValueEventListener(new ValueEventListener() {
+//                                                                              @Override
+//                                                                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                                                  if(snapshot.exists()){
+//                                                                                      getEmail = snapshot.getValue().toString().trim();
+//                                                                                      firebaseAuth.signInWithEmailAndPassword(getEmail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                                                                          @Override
+//                                                                                          public void onComplete(@NonNull Task<AuthResult> task) {
+//                                                                                              if(task.isSuccessful()){
+//                                                                                                  Intent intent = new Intent(MainActivity.this, ShopEstablishmentMainActivity.class);
+//                                                                                                  startActivity(intent);
+//                                                                                                  finish();
+//                                                                                              }else {
+//                                                                                                  Toast.makeText(MainActivity.this, "error!! " ,Toast.LENGTH_LONG ).show();
+//                                                                                              }
+//                                                                                          }
+//                                                                                      });
+//
+//                                                                                  }
+//                                                                              }
+//
+//                                                                              @Override
+//                                                                              public void onCancelled(@NonNull DatabaseError error) {
+//                                                                                  Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                                                                              }
+//                                                                          });
+//                                                                      }
+//                                                                  }
+//
+//                                                                  @Override
+//                                                                  public void onCancelled(@NonNull DatabaseError error) {
+//                                                                      Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                                                                  }
+//                                                              });
+//                                                          }
+//                                                      }
+//
+//                                                      @Override
+//                                                      public void onCancelled(@NonNull DatabaseError error) {
+//                                                          Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                                                      }
+//                                                  });
+//                                              }
+//                                          }
+//
+//                                          @Override
+//                                          public void onCancelled(@NonNull DatabaseError error) {
+//                                              Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                                          }
+//                                      });
+//                                  }
+//
+//                              }
+//
+//                              @Override
+//                              public void onCancelled(@NonNull DatabaseError error) {
+//                                  Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                              }
+//                          });
+//                       }
+//                       else {
+//                           Toast.makeText(MainActivity.this, "user not found, please try again", Toast.LENGTH_LONG).show();
+//                       }progressDialog.dismiss();
+//                   }
+//
+//                   @Override
+//                   public void onCancelled(@NonNull DatabaseError error) {
+//                       Toast.makeText(MainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
+//                   }
+//
+//
+//               });
 
 
 
