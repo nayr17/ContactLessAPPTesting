@@ -38,6 +38,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //done
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upload_pic);
         storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
@@ -72,22 +73,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
                         }
                     });
 
-//                    Task<Uri> downloadURL = profilePicUpload.getDownloadUrl();
-//                    downloadURL.addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Uri> task) {
-//                            imageRef = task.toString();
-//                            Toast.makeText(CustomerUploadPicActivity.this , "url :" + imageRef, Toast.LENGTH_SHORT).show();
-//                            DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
-//                            addPhotoRef.child("profilePhotoURL").setValue(imageRef);
-//                        }
-//
                     progressDialog.dismiss();
-//                    Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

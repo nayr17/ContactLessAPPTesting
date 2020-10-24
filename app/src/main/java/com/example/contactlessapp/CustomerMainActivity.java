@@ -105,7 +105,6 @@ public class CustomerMainActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(CustomerMainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
@@ -173,42 +172,6 @@ public class CustomerMainActivity extends AppCompatActivity {
         intent.putExtra("getUsername", getUsername);
         startActivity(intent);
     }
-
-
-//    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        inImage.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-//        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Qr_Code", null);
-//        return Uri.parse(path);
-//    }
-
-//    public void UserGenerateQR_code(){
-//
-//
-//        generatredQR_code.setVisibility(View.INVISIBLE);
-//        QR_ID = QR_ID + getUsername;
-//        String data = QR_ID.trim();
-//        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
-//        qrgEncoder.setColorBlack(Color.rgb(50,205,50));
-//        //Get QR code as bitmap
-//        Bitmap bitmap = qrgEncoder.getBitmap();
-//        //set bitmap as image
-//        generatredQR_code.setImageBitmap(bitmap);
-//
-//
-//
-//        //on progress
-//        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-//        StorageReference profilePicUpload = storageReference.child(getUsername + "/Qr_Code");
-//        profilePicUpload.putFile(getImageUri(this, bitmap)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(CustomerMainActivity.this,"success!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
-//    }
 
 
 }

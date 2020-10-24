@@ -17,10 +17,12 @@ import android.widget.Toast;
 import com.example.contactlessapp.DbHelpers.Adapter;
 import com.example.contactlessapp.DbHelpers.GetCustomerInfo;
 import com.example.contactlessapp.DbHelpers.Model;
+import com.example.contactlessapp.LinearNavigation.EditProfile;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Time;
 import java.text.DateFormat;
@@ -37,24 +40,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class ShopEstablishmentMainActivity extends AppCompatActivity {
-    TextView textView1;
-    ImageView getUserpic;
-    TextView getID;
-    TextView getDate;
-    TextView getTime;
-    TextView getName;
-    TextView getAddress;
-    TextView getPhonenumber;
 
     String QR_ID_edited;
     String Username;
     String label = "Customer No.";
     int number = 0;
 
+    CircleImageView showPhoto;
+    TextView shopName;
+    TextView shopAddress;
+    TextView shopUsername;
+    TextView shopEmail;
+
 //    RecyclerView recyclerView;
 //    Adapter adapter;
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -62,9 +66,23 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_establishment_main);
+        showPhoto = findViewById(R.id.shopPic);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+        shopName = findViewById(R.id.shopName);
+        shopAddress = findViewById(R.id.shopAddress);
+        shopUsername = findViewById(R.id.shopUsername);
+        shopEmail = findViewById(R.id.shopEmail);
 
         Intent intent = getIntent();
         Username = intent.getStringExtra("username_input");
+
+        getData();
+
+
+
+
 
 //        textView1 = findViewById(R.id.textView1);
 
@@ -79,6 +97,48 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
 //        recyclerView.setAdapter(adapter);
 
 
+    }
+    public void getData(){
+        DatabaseReference getRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + Username);
+        getRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    shopName.setText("Shop Name: " + snapshot.child("name").getValue().toString());
+                    shopAddress.setText("Shop Location: " + snapshot.child("location").getValue().toString());
+                    shopUsername.setText(snapshot.child("username").getValue().toString());
+                    shopEmail.setText("Shop Email: " + snapshot.child("email").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final DatabaseReference getUrl = FirebaseDatabase.getInstance().getReference("Registered_Users/" + Username + "/profilePhotoURL");
+        getUrl.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String result = snapshot.getValue(String.class);
+                getUrl.setValue(result);
+                Picasso.get()
+                        .load(result)
+                        .resize(150,150)
+                        .into(showPhoto);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 //
 //    @Override
@@ -208,5 +268,17 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
     }
 
 
+    public void btnUploadphoto(View view) {
+        Intent i = new Intent(ShopEstablishmentMainActivity.this, EditProfile.class);
+        i.putExtra("Username", Username);
+        startActivity(i);
 
+    }
+
+    public void btnLogout(View view) {
+        firebaseAuth.signOut();
+        Intent i = new Intent(ShopEstablishmentMainActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }
