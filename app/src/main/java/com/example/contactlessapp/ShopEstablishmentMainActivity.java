@@ -66,7 +66,7 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Username = intent.getStringExtra("username_input");
 
-        textView1 = findViewById(R.id.textView1);
+//        textView1 = findViewById(R.id.textView1);
 
 //        recyclerView = findViewById(R.id.recyclerView);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -154,9 +154,9 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
 //        int display = stringBuilder.delete(0,12).to();
 
 
-        String childName = label + number;
-        Toast.makeText(ShopEstablishmentMainActivity.this,childName, Toast.LENGTH_SHORT).show();
-        textView1.setText("id"+childName);
+//        String childName = label + number;
+//        Toast.makeText(ShopEstablishmentMainActivity.this,childName, Toast.LENGTH_SHORT).show();
+//        textView1.setText("id"+childName);
 
 
 
