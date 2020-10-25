@@ -18,6 +18,7 @@ import com.example.contactlessapp.DbHelpers.Adapter;
 import com.example.contactlessapp.DbHelpers.GetCustomerInfo;
 import com.example.contactlessapp.DbHelpers.Model;
 import com.example.contactlessapp.LinearNavigation.EditProfile;
+import com.example.contactlessapp.LinearNavigation.RecentScan;
 import com.example.contactlessapp.LinearNavigation.ScanCode;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -288,6 +289,12 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
     public void btnScanQR(View view)
     {
         Intent i = new Intent(ShopEstablishmentMainActivity.this, ScanCode.class);
+        i.putExtra("Username", Username);
+        startActivity(i);
+    }
+
+    public void ViewScan(View view) {
+        Intent i = new Intent(ShopEstablishmentMainActivity.this, RecentScan.class);
         i.putExtra("Username", Username);
         startActivity(i);
     }

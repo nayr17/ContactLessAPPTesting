@@ -138,6 +138,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_margin="5dp"
                         android:backgroundTint="#fff"
+                        android:onClick="ViewScan"
                         android:src="@drawable/ic_baseline_assignment_24" />
 
                     <TextView

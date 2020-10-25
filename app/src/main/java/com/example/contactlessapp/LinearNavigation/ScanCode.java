@@ -1,11 +1,13 @@
 package com.example.contactlessapp.LinearNavigation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,16 +35,9 @@ import java.util.Locale;
 
 public class ScanCode extends AppCompatActivity
 {
-
-    RecyclerView recyclerView;
-    Adapter adapter;
-    TextView customerID;
     String Username;
     String QR_ID_edited;
     private FirebaseAuth firebaseAuth;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,36 +46,9 @@ public class ScanCode extends AppCompatActivity
         setContentView(R.layout.activity_scan_code);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        customerID = findViewById(R.id.customerID);
         Intent intent = getIntent();
         Username = intent.getStringExtra("Username");
 
-
-        recyclerView = findViewById(R.id.recycleView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseRecyclerOptions<Model> options = new FirebaseRecyclerOptions.Builder<Model>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Scanned Customer").child(Username),Model.class)
-                .build();
-
-        adapter = new Adapter(options);
-        recyclerView.setAdapter(adapter);
-
-
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    protected void onStop()
-    {
-        super.onStop();
-        adapter.stopListening();
     }
 
 
@@ -138,7 +106,8 @@ public class ScanCode extends AppCompatActivity
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference getRef = firebaseDatabase.getReference("Registered_Users/" + QR_ID_edited );
-        getRef.addValueEventListener(new ValueEventListener() {
+        getRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot snapshot)
             {
@@ -152,15 +121,15 @@ public class ScanCode extends AppCompatActivity
                     String photoUrl = snapshot.child("profilePhotoURL").getValue().toString().trim();
 
 
-                    DatabaseReference uploadRef = FirebaseDatabase.getInstance().getReference("Scanned Customer/" + Username);
-                    GetCustomerInfo helper = new GetCustomerInfo( address, barangay, email, name, phoneNumber, username, date, currentTime, photoUrl);
-                    uploadRef.child(name).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     DatabaseReference uploadRef = FirebaseDatabase.getInstance().getReference("Scanned Customer/" + Username);
+                     GetCustomerInfo helper = new GetCustomerInfo( address, barangay, email, name, phoneNumber, username, date, currentTime, photoUrl);
+                     uploadRef.push().setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(Task<Void> task)
                         {
                             if(task.isComplete())
                             {
-                                Toast.makeText(ScanCode.this,"Success!!", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(ScanCode.this, "successfully scanned customer", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -168,7 +137,7 @@ public class ScanCode extends AppCompatActivity
                 }
                 else
                     {
-                    Toast.makeText(ScanCode.this,"customer has not been registered", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(ScanCode.this,"customer has not been registered", Toast.LENGTH_SHORT).show();
                     }
             }
 
@@ -179,8 +148,6 @@ public class ScanCode extends AppCompatActivity
             }
         });
 
-
     }
-
 
 }

@@ -5,15 +5,15 @@ public class GetCustomerInfo {
     public GetCustomerInfo() {
 
     }
-    String  address, barangay, emailAddress, name, phoneNumber, usernmae, date, time, photoUrl;
+    String  address, barangay, emailAddress, name, phoneNumber, username, date, time, photoUrl;
 
-    public GetCustomerInfo(String address, String barangay, String emailAddress, String name, String phoneNumber, String usernmae, String date, String time, String photoUrl) {
+    public GetCustomerInfo(String address, String barangay, String emailAddress, String name, String phoneNumber, String username, String date, String time, String photoUrl) {
         this.address = address;
         this.barangay = barangay;
         this.emailAddress = emailAddress;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.usernmae = usernmae;
+        this.username = username;
         this.date = date;
         this.time = time;
         this. photoUrl = photoUrl;
@@ -59,12 +59,12 @@ public class GetCustomerInfo {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUsernmae() {
-        return usernmae;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsernmae(String usernmae) {
-        this.usernmae = usernmae;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDate() {

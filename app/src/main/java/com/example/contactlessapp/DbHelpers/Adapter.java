@@ -33,6 +33,7 @@ public class Adapter extends FirebaseRecyclerAdapter<Model, Adapter.show_data>
         holder.phoneNumber.setText("Phone Number: " + model.getPhoneNumber());
         holder.date.setText(model.getDate());
         holder.time.setText(model.getTime());
+        holder.username.setText(model.getUsername());
 
         Glide.with(holder.imageView.getContext()).load(model.getPhotoUrl()).into(holder.imageView);
 //        Picasso.get()
@@ -65,7 +66,7 @@ public class Adapter extends FirebaseRecyclerAdapter<Model, Adapter.show_data>
             phoneNumber = itemView.findViewById(R.id.textViewGetCustomerPhoneNumber);
             date = itemView.findViewById(R.id.textViewDate);
             time = itemView.findViewById(R.id.textViewTime);
-            username = itemView.findViewById(R.id.customerID);
+            username = itemView.findViewById(R.id.username);
         }
     }
 }

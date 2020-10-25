@@ -4,13 +4,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="10dp"
+    android:elevation="15dp"
+    app:cardCornerRadius="15dp"
     app:cardUseCompatPadding="true">
 
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="140dp">
+                            android:layout_height="140dp"
+                            android:background="@drawable/layout_border">
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
@@ -22,9 +24,9 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     app:civ_border_color="#000"
-                                    app:civ_border_width="2dp"
-                                    android:layout_centerVertical="true"
+                                    app:civ_border_width="3dp"
                                     android:src="@drawable/stop"
+                                    android:layout_marginTop="15dp"
                                     android:layout_centerHorizontal="true"/>
 
                                 <TextView
@@ -33,9 +35,10 @@
                                     android:layout_height="wrap_content"
                                     android:text="Customer # 1"
                                     android:layout_below="@id/customerPic"
-                                    android:textSize="12dp"
+                                    android:textSize="10dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000"
                                     android:padding="5dp"
-                                    android:layout_marginTop="15dp"
                                     android:layout_centerHorizontal="true"/>
 
 
@@ -51,6 +54,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Date: "
+                                    android:textColor="#000"
                                     android:layout_marginTop="5dp"
                                     android:textStyle="bold"/>
 
@@ -62,7 +66,8 @@
                                     android:text="10/7/2020"
                                     android:textSize="12dp"
                                     android:padding="5dp"
-                                    android:background="#D3D3D3"
+                                    android:background="@drawable/border_radius"
+                                    android:textColor="#000"
                                     android:layout_marginTop="5dp"
                                     android:layout_below="@+id/date"
                                     android:layout_centerHorizontal="true"/>
@@ -71,6 +76,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Time: "
+                                    android:textColor="#000"
                                     android:layout_marginTop="10dp"
                                     android:layout_below="@id/textViewDate"
                                     android:textStyle="bold"/>
@@ -84,8 +90,9 @@
                                     android:padding="5dp"
                                     android:text="9:02 AM"
                                     android:textSize="12dp"
+                                    android:textColor="#000"
                                     android:layout_marginTop="5dp"
-                                    android:background="#D3D3D3"
+                                    android:background="@drawable/border_radius"
                                     android:layout_centerHorizontal="true"/>
 
                             </RelativeLayout>
@@ -100,19 +107,23 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="30dp"
                                     android:text="Name: John Rey J. Malaban"
-                                    android:padding="5dp"
+                                    android:padding="3dp"
+                                    android:layout_margin="2dp"
+                                    android:textColor="#000"
                                     android:textSize="12dp"
-                                    android:background="#D3D3D3"/>
+                                    android:background="@drawable/border_radius"/>
 
                                 <TextView
                                     android:id="@+id/textViewGetCustomerAddress"
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="3dp"
                                     android:text="Address: blk40 lot123 carmela valley homes talisay city"
                                     android:textSize="12dp"
-                                    android:padding="5dp"
+                                    android:padding="2dp"
                                     android:layout_marginTop="5dp"
-                                    android:background="#D3D3D3"
+                                    android:background="@drawable/border_radius"
+                                    android:textColor="#000"
                                     android:layout_below="@id/textViewGetCustomerName"/>
 
                                 <TextView
@@ -120,10 +131,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="30dp"
                                     android:text="Phone Number: 09071254215"
-                                    android:padding="5dp"
+                                    android:padding="3dp"
                                     android:layout_marginTop="5dp"
-                                    android:background="#D3D3D3"
+                                    android:layout_margin="2dp"
+                                    android:background="@drawable/border_radius"
                                     android:textSize="12dp"
+                                    android:textColor="#000"
                                     android:layout_below="@id/textViewGetCustomerAddress"/>
 
 
