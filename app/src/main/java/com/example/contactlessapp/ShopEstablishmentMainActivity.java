@@ -18,6 +18,7 @@ import com.example.contactlessapp.DbHelpers.Adapter;
 import com.example.contactlessapp.DbHelpers.GetCustomerInfo;
 import com.example.contactlessapp.DbHelpers.Model;
 import com.example.contactlessapp.LinearNavigation.EditProfile;
+import com.example.contactlessapp.LinearNavigation.ScanCode;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -268,17 +269,26 @@ public class ShopEstablishmentMainActivity extends AppCompatActivity {
     }
 
 
-    public void btnUploadphoto(View view) {
+    public void btnUploadphoto(View view)
+    {
         Intent i = new Intent(ShopEstablishmentMainActivity.this, EditProfile.class);
         i.putExtra("Username", Username);
         startActivity(i);
 
     }
 
-    public void btnLogout(View view) {
+    public void btnLogout(View view)
+    {
         firebaseAuth.signOut();
         Intent i = new Intent(ShopEstablishmentMainActivity.this, MainActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void btnScanQR(View view)
+    {
+        Intent i = new Intent(ShopEstablishmentMainActivity.this, ScanCode.class);
+        i.putExtra("Username", Username);
+        startActivity(i);
     }
 }

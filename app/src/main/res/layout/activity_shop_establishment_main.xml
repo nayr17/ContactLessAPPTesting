@@ -164,6 +164,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_margin="5dp"
                         android:backgroundTint="#fff"
+                        android:onClick="btnScanQR"
                         android:src="@drawable/ic_baseline_fullscreen_24" />
 
                     <TextView
