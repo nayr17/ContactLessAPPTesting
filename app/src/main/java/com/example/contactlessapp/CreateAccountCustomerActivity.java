@@ -33,6 +33,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.transform.Result;
 
 public class CreateAccountCustomerActivity extends AppCompatActivity {
@@ -49,6 +52,11 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
     //Customer helper class parameters
     String AccountType = "Customer";
     private String accountType;
+    private static final String KEY_NAME = "Name";
+    private static final String KEY_ADDRESS = "Address";
+    private static final String KEY_PHONENUMBER = "Phone Number";
+    private static final String KEY_BARANGAY = "Name";
+    private static final String KEY_USERNAME = "Username";
     private String name;
     private String address;
     private String phoneNumber;
@@ -60,6 +68,9 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressBar progressBar;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
 
     @Override
@@ -147,6 +158,13 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(CreateAccountCustomerActivity.this, "User Created", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                            Map<String,Object> test = new HashMap<>();
+                            test.put(KEY_NAME,name);
+                            test.put(KEY_ADDRESS,address);
+                            test.put(KEY_PHONENUMBER,phoneNumber);
+                            test.put(KEY_BARANGAY,barangay);
+                            test.put(KEY_USERNAME,username);
                         }
                         else {
                             Toast.makeText(CreateAccountCustomerActivity.this, "Error!", Toast.LENGTH_LONG).show();
