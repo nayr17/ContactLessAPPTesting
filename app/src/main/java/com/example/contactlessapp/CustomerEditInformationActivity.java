@@ -110,33 +110,6 @@ public class CustomerEditInformationActivity extends AppCompatActivity {
 
         }
 
-//        final DatabaseReference getUserRef = firebaseDatabase.getReference("Registered_Users/" + getUsername);
-//        getUserRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-////                    DatabaseReference getNameRef = firebaseDatabase.getReference("Registered_Users/" + getUsername + "/name");
-//
-//                    getUserRef.child("name").setValue(updateName);
-//                    getUserRef.child("address").setValue(updateAddress);
-//                    getUserRef.child("phoneNumber").setValue(updatePhoneNumber);
-//                    getUserRef.child("barangay").setValue(updateBarangay);
-//                    getUserRef.child("username").setValue(updateUsername);
-//
-//                    Toast.makeText(CustomerEditInformationActivity.this, "Your information has been updated!", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(CustomerEditInformationActivity.this, CustomerMainActivity.class);
-//                    startActivity(intent);
-//
-//                }
-//                else{
-//                    Toast.makeText(CustomerEditInformationActivity.this, "Error!, please try again", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(CustomerEditInformationActivity.this, ""+ error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override

@@ -110,10 +110,6 @@ public class CustomerMainActivity extends AppCompatActivity {
                 Toast.makeText(CustomerMainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
             }
         });
-//        FirebaseUser getEmailRef = firebaseAuth.getCurrentUser();
-//        getEmailRef.getEmail().trim();
-//        String emailRef = getEmailRef.toString().trim();
-//        Toast.makeText(CustomerMainActivity.this,"email"+ emailRef,Toast.LENGTH_LONG).show();
 
     }
 

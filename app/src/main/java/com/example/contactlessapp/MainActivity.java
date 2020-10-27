@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,ForgotPassActivity.class);
                 startActivity(intent);
 
-                //Toast.makeText(MainActivity.this,"you clicked forgot pass",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,CreateAccountActivity.class);
                 startActivity(intent);
 
-                //Toast.makeText(MainActivity.this,"you clicked create account",Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -294,58 +292,6 @@ public class MainActivity extends AppCompatActivity {
 
                });
 
-
-
-
-//        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
-//        userRef.orderByChild("username")
-//                .equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    DatabaseReference passref = FirebaseDatabase.getInstance().getReference("Registered_Users").child(username);
-//                    passref.child("password").equalTo(password).addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            if(snapshot.exists()){
-//                                Toast.makeText(MainActivity.this,"user match", Toast.LENGTH_LONG).show();
-//                            }else{
-//                                Toast.makeText(MainActivity.this,"user not found!", Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//
-//
-////                    DatabaseReference passRef = FirebaseDatabase.getInstance().getReference("Registered_Users" + username);
-////                    passRef.orderByChild("username").equalTo(username).orderByChild("password").equalTo(password).addListenerForSingleValueEvent(new ValueEventListener() {
-////                        @Override
-////                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-////                            if(snapshot.exists()){
-////                                Toast.makeText(MainActivity.this,"user match", Toast.LENGTH_LONG).show();
-////
-////                            }else{
-////                                Toast.makeText(MainActivity.this,"user not found!", Toast.LENGTH_LONG).show();
-////                            }
-////                        }
-////
-////                        @Override
-////                        public void onCancelled(@NonNull DatabaseError error) {
-////
-////                        }
-////                    });
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
     }
 }

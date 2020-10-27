@@ -92,26 +92,6 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             })
             ;
         }
-//        final DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username) ;
-//        addPhotoRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    Toast.makeText(CustomerUploadPicActivity.this , "Exist!!!", Toast.LENGTH_SHORT).show();
-//
-//                    Toast.makeText(CustomerUploadPicActivity.this , " :" + addPhotoRef, Toast.LENGTH_SHORT).show();
-//
-//                    addPhotoRef.child("profilePhotoURL").setValue(123456);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
     }
 
     @Override

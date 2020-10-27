@@ -24,7 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity android:name=".LinearNavigation.EditProfile"></activity>
-        <activity android:name=".LinearNavigation.ScanCode" />
         <activity android:name=".LinearNavigation.RecentScan" />
         <activity android:name=".CustomerQRcodeActivity" />
         <activity android:name=".CustomerUploadPicActivity" />

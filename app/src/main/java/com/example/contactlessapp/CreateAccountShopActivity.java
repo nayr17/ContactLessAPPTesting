@@ -181,52 +181,6 @@ public class CreateAccountShopActivity extends AppCompatActivity {
 
         }
 
-
-//        if(shopName.length() ==0 || shopName.equals("")){
-//            shopName.setError("field cannot be empty.");
-//
-//        }
-//        if(shopLocation.length()==0){
-//            shopLocation.setError("field cannot be empty.");
-//        }
-//       if(shopUsername.length()==0){
-//            shopUsername.setError("field cannot be empty.");
-//        }
-//       if(shopEmail.length()==0){
-//            shopEmail.setError("field cannot be empty.");
-//        }
-//        if(shopPassword.length()==0){
-//            shopPassword.setError("field cannot be empty.");
-//        }
-//        if(shopConfirmPassword.length()==0){
-//            shopConfirmPassword.setError("field cannot be empty.");
-//        }
-//        if(shopPassword != shopConfirmPassword){
-//            if(shopPassword.length() != 0){
-//                if(shopConfirmPassword.length() !=0){
-//                    Toast.makeText(this,"Password does not match", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//        }
-//
-//
-//        if(password.equals(confirmPassword)){
-//            if(password.length()!=0){
-//                if(password.length()!=0){
-//
-//                        CreateAccountShopHelperClass helperClass = new CreateAccountShopHelperClass(accountType, name, location, username, email, password);
-//                        myref.child(username).setValue(helperClass);
-//
-//                        Intent intent = new Intent(this, MainActivity.class);
-//                        startActivity(intent);
-//                        Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                }
-//            }
-
     }
 
     public void goToLogin(View view) {
