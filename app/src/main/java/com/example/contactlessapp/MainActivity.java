@@ -32,6 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.EventListener;
 
@@ -45,15 +47,19 @@ public class MainActivity extends AppCompatActivity {
     private String Customer = "Customer";
     private String Shop= "Shop";
     private String Establishment = "Establishment";
-    private  String getEmail;
+    private String email;
 
     private ProgressDialog progressDialog;
     private  FirebaseAuth firebaseAuth;
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference dbreference = db.collection("Customer Accounts").document("Customer Accounts");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         firebaseAuth = FirebaseAuth.getInstance();
 
 //        if(firebaseAuth.getCurrentUser()!= null){
@@ -85,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
 
                 //Toast.makeText(MainActivity.this,"you clicked create account",Toast.LENGTH_LONG).show();
                 finish();
+            }
+        });
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                password = password_input.getText().toString().trim();
+//                dbreference.get()
+                firebaseAuth.signInWithEmailAndPassword(email,password)
             }
         });
     }

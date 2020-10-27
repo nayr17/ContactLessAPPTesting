@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.contactlessapp.DbHelpers.CreateAccountShopHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -148,16 +150,13 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
-
                 // register using firebase
 
                 firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(CreateAccountCustomerActivity.this, "User Created", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            progressBar.setVisibility(View.VISIBLE);
 
                             Map<String,Object> test = new HashMap<>();
                             test.put(KEY_NAME,name);
@@ -165,6 +164,24 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
                             test.put(KEY_PHONENUMBER,phoneNumber);
                             test.put(KEY_BARANGAY,barangay);
                             test.put(KEY_USERNAME,username);
+
+                            db.collection("Customer Accounts").document().set(test)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(CreateAccountCustomerActivity.this, "Data Saved", Toast.LENGTH_LONG).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(CreateAccountCustomerActivity.this, "Error!", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+
+                            progressBar.setVisibility(View.VISIBLE);
+                            Toast.makeText(CreateAccountCustomerActivity.this, "User Created", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                         else {
                             Toast.makeText(CreateAccountCustomerActivity.this, "Error!", Toast.LENGTH_LONG).show();

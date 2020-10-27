@@ -155,6 +155,7 @@
         android:textSize="12dp"/>
 
     <ProgressBar
+        android:visibility="invisible"
         android:id="@+id/progressbarxml"
         android:layout_width="100dp"
         android:layout_height="100dp"
