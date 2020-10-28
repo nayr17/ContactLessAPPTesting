@@ -33,9 +33,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.EventListener;
 import java.util.Map;
@@ -52,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
     private String Establishment = "Establishment";
     private String email;
 
+    private String usernamedata, email
+
     private ProgressDialog progressDialog;
     private  FirebaseAuth firebaseAuth;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference dbreference = db.collection("Customer Accounts").document("Customer Accounts");
+    private DocumentReference dbreference = db.collection("Customer Accounts").document();
+    private CollectionReference dbcolref = db.collection("Customer Accounts");
 
     private static final String KEY_USERNAME = "Username";
     @Override
@@ -111,15 +117,29 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else{
+                    dbcolref.get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        LoginData loginData = documentSnapshot.toObject(LoginData.class);
+                                        String usernamedata = "Username";
+//                                        String usernamedata = loginData.getUsername();
+                                        email = loginData.getEmail()
+                                    }
+                                }
+                            });
                     dbreference.get()
                             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    for ()
                                     if (documentSnapshot.exists()){
-                                        username = documentSnapshot.getString(KEY_USERNAME);
-                                        Map<String, Object> retrieve = documentSnapshot.getData();
-                                        if (username.)
-                                        firebaseAuth.signInWithEmailAndPassword(email,)
+//                                        username = documentSnapshot.getString(KEY_USERNAME);
+//                                        Map<String, Object> put = documentSnapshot.getData();
+//                                        String username2 = dbreference.get()
+                                        }
+//                                        firebaseAuth.signInWithEmailAndPassword(email,)
                                     }
                                     else {
                                         Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
