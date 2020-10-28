@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.contactlessapp.DbHelpers.CreateAccountCustomerHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,9 +34,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.EventListener;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button login_button;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference dbreference = db.collection("Customer Accounts").document("Customer Accounts");
+
+    private static final String KEY_USERNAME = "Username";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +102,35 @@ public class MainActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(username)) {
+                    username_input.setError("field cannot be empty.");
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    password_input.setError("field cannot be empty.");
+                    return;
+                }
+                else{
+                    dbreference.get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.exists()){
+                                        username = documentSnapshot.getString(KEY_USERNAME);
+                                        Map<String, Object> retrieve = documentSnapshot.getData();
+                                        if (username.)
+                                        firebaseAuth.signInWithEmailAndPassword(email,)
+                                    }
+                                    else {
+                                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+
+                username = username_input.getText().toString().trim();
                 password = password_input.getText().toString().trim();
-//                dbreference.get()
+
                 firebaseAuth.signInWithEmailAndPassword(email,password)
             }
         });
