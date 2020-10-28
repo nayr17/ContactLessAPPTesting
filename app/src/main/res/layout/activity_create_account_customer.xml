@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".CreateAccountCustomerActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/shop" />
+        app:civ_border_width="3dp"
+        app:civ_border_color="#32CD32"
+        android:src="@drawable/ic_baseline_person_24"/>
 
     <TextView
         android:id="@+id/newShop"
@@ -28,9 +30,12 @@
     <RelativeLayout
         android:id="@+id/RelUserInfo"
         android:layout_below="@+id/newShop"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/border"
         android:layout_centerHorizontal="true">
 
 

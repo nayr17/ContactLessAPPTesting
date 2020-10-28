@@ -4,72 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".CustomerMainActivity">
 
-
-    <TextView
-        android:id="@+id/textViewPersonalInformation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="30dp"
-        android:text="Personal Information"
-        android:textColor="#32CD32"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
-
     <LinearLayout
-        android:id="@+id/linear1"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/no"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            android:text="Contactless Logbook System"/>
+
+
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPersonalInformation">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/UserPic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/unnamed"
+            app:civ_border_color="#BD2031"
+            app:civ_border_width="5dp" />
+
+        <TextView
+            android:id="@+id/welcomeMessage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Hi username! "
+            android:textColor="#BD2031"
+            android:textSize="15dp"
+            android:layout_below="@id/UserPic"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/welcomeMessage"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:padding="5dp"
-                android:text="Hi username! "
-                android:textColor="#000"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:background="@drawable/btnqrcode"
-                android:textStyle="bold"/>
 
-            <ImageView
-                android:id="@+id/UserPic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_below="@+id/welcomeMessage"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/unnamed"/>
+        <LinearLayout
+            android:id="@+id/linear11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcomeMessage"
+            android:layout_centerHorizontal="true">
 
-            <Button
-                android:id="@+id/btnUploadPic"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/UserPic"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:onClick="btnUpload"
-                android:text="upload photo"
-                android:textSize="10dp" />
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnCustomerMain_Edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="btnEdit"
+                    android:src="@drawable/ic_baseline_edit_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnCustomerMain_Edit"
+                    android:layout_centerInParent="true"
+                    android:text="Edit Info"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
 
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/btnUploadPic"
+                android:layout_below="@+id/UserPic"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:background="@color/cardview_dark_background"
                 android:onClick="CustomerMain_Logout"
                 android:text="Logout"
@@ -77,127 +108,141 @@
                 android:textSize="10dp" />
 
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/linearInfo"
-            android:layout_width="275dp"
+                <ImageButton
+                    android:id="@+id/btnUploadPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="btnUpload"
+                    android:src="@drawable/ic_baseline_add_photo_alternate_24"
+                    android:text="upload photo"
+                    android:textSize="10dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnUploadPic"
+                    android:layout_centerInParent="true"
+                    android:text="Add Photo"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/linearInfo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/rel1"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/CustomerMain_Name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewPersonalInformation"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical"
-            android:paddingLeft="2dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Name: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="10dp"
-                android:text="Name: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/CustomerMain_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CustomerMain_Name"
+            android:layout_marginBottom="10dp"
+            android:text="Address: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CustomerMain_Name"
-                android:layout_marginBottom="10dp"
-                android:text="Address: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/CustomerMain_Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CustomerMain_Address"
+            android:layout_marginBottom="10dp"
+            android:text="Phone number: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CustomerMain_Address"
-                android:layout_marginBottom="10dp"
-                android:text="Phone number: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/CustomerMain_Barangay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CustomerMain_Phone"
+            android:layout_marginBottom="10dp"
+            android:text="Barangay: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Barangay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CustomerMain_Phone"
-                android:layout_marginBottom="10dp"
-                android:text="Barangay: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/CustomerMain_Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CustomerMain_Barangay"
+            android:layout_marginBottom="10dp"
+            android:text="Username: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CustomerMain_Barangay"
-                android:layout_marginBottom="10dp"
-                android:text="Username: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/CustomerMain_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CustomerMain_Username"
+            android:text="Email: "
+            android:textColor="#000"
+            android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/CustomerMain_Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CustomerMain_Username"
-                android:layout_marginBottom="10dp"
-                android:text="Email: "
-                android:textColor="#000"
-                android:textSize="14dp" />
+    </RelativeLayout>
 
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Linear2"
+    <Button
+        android:layout_below="@id/linearInfo"
+        android:id="@+id/btnCustomerMain_QRcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear1"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true">
-
-        <Button
-            android:id="@+id/btnCustomerMain_Edit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_below="@id/linear1"
-            android:background="@drawable/btnlogin"
-            android:text="edit"
-            android:textColor="#fff"
-            android:textSize="15dp"
-            android:padding="15dp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            android:onClick="btnEdit"/>
-
-        <Button
-            android:id="@+id/btnCustomerMain_QRcode"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_below="@+id/btnCustomerMain_Edit"
-            android:background="@drawable/btnqrcode"
-            android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
-            android:padding="15dp"
-            android:text="Qr code"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:onClick="btnCustomerQRcode"
-            android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/btnqrcode"
+        android:drawableLeft="@drawable/ic_baseline_arrow_forward_24"
+        android:onClick="btnCustomerQRcode"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Qr code"
+        android:layout_margin="20dp"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/generatedQRCode"
-        android:layout_below="@+id/Linear2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linearInfo"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="-30dp"
+        android:background="#fff"
+        android:text="Personal Information"
+        android:textColor="#000"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

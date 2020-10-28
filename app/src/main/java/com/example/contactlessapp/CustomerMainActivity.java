@@ -86,7 +86,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("username_input");
-        welcomeDisplay.setText("Hi: " + getUsername);
+        welcomeDisplay.setText(getUsername);
 
 
         DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername);
