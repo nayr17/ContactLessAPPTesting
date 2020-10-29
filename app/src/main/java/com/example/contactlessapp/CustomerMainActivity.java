@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         welcomeDisplay = findViewById(R.id.welcomeMessage);
         userPic = findViewById(R.id.UserPic);
         generatredQR_code = findViewById(R.id.generatedQRCode);
+
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("username_input");

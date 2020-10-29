@@ -11,10 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="20dp"
         android:text="Edit Information Form"
         android:textColor="#8B0000"
         android:textSize="25dp" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/UserPic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/unnamed"
+        android:layout_below="@id/textViewPersonalInformation"
+        app:civ_border_color="#8B0000"
+        app:civ_border_width="3dp"/>
 
     <LinearLayout
         android:layout_centerHorizontal="true"
@@ -24,24 +37,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/UserPic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/unnamed" />
-
-
-        </RelativeLayout>
-
 
         <RelativeLayout
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewPersonalInformation">
@@ -53,6 +53,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="5dp"
                 android:hint="Enter name"
+                android:textColorHint="#000"
                 android:inputType="text"
                 android:textColor="#000"
                 android:textSize="15dp"/>
@@ -67,6 +68,7 @@
                 android:hint="Enter address"
                 android:inputType="text"
                 android:textColor="#000"
+                android:textColorHint="#000"
                 android:textSize="15dp" />
 
             <EditText
@@ -78,6 +80,7 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Enter phone number: "
                 android:inputType="phone"
+                android:textColorHint="#000"
                 android:textColor="#000"
                 android:textSize="15dp" />
 
@@ -90,6 +93,7 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Enter barangay"
                 android:inputType="text"
+                android:textColorHint="#000"
                 android:textColor="#000"
                 android:textSize="15dp" />
 
@@ -101,6 +105,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="5dp"
                 android:hint="Enter username"
+                android:textColorHint="#000"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:inputType="text"/>

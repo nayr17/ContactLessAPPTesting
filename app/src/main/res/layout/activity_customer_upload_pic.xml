@@ -12,15 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:text="Selected Image"
         android:textColor="#32CD32"
         android:textSize="25dp" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/selectedImage"
         android:layout_width="350dp"
         android:layout_height="350dp"
+        app:civ_border_color="#BD2031"
+        app:civ_border_width="3dp"
+        android:src="@drawable/ic_baseline_person_24"
         android:layout_below="@+id/textViewSelectedImage"
         android:layout_centerHorizontal="true" />
 

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
     private ImageView selectedImage;
     private String username;
     private String imageRef;
+    Button btnUpdate;
 
 
     @Override
@@ -44,9 +46,13 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
          selectedImage = findViewById(R.id.selectedImage);
 
+         btnUpdate = findViewById(R.id.btnCustomerActivityUploadImage);
+         btnUpdate.setEnabled(false);
+         btnUpdate.setVisibility(View.INVISIBLE);
+
+
          Intent intent = getIntent();
          username = intent.getStringExtra("getUserRef");
-        Toast.makeText(this, ""+ username, Toast.LENGTH_LONG).show();
 
 
     }
@@ -103,6 +109,8 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFile);
                 selectedImage.setImageBitmap(bitmap);
+                btnUpdate.setEnabled(true);
+                btnUpdate.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -124,6 +132,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
         intent.setType("image/*"); // see images only
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, chooseImage_Req);
+
 
     }
 
