@@ -29,7 +29,7 @@ public class Adapter extends FirebaseRecyclerAdapter<Model, Adapter.show_data>
     protected void onBindViewHolder(@NonNull show_data holder, int position, @NonNull Model model)
     {
         holder.name.setText("Name: " + model.getName());
-        holder.address.setText("Address: " + model.getAddress());
+        holder.address.setText("Address: " + model.getAddress() + ", " + model.getBarangay());
         holder.phoneNumber.setText("Phone Number: " + model.getPhoneNumber());
         holder.date.setText(model.getDate());
         holder.time.setText(model.getTime());

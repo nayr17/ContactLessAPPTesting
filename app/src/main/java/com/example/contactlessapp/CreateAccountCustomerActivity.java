@@ -181,18 +181,18 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
                                     myRef.child(username).setValue(helperClass);
 
                                     Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
-
                                     Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
+
 
                                 }
                                 else{
                                     Toast.makeText(CreateAccountCustomerActivity.this, "could not register! please try again",
                                             Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    Intent intent = new Intent(CreateAccountCustomerActivity.this, CreateAccountCustomerActivity.class);
-                                    startActivity(intent);
+//                                    Intent intent = getIntent();
+//                                    finish();
+//                                    startActivity(intent);
                                 }
                                 progressDialog.dismiss();
 

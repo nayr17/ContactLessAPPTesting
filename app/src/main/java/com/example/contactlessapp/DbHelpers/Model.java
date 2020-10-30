@@ -2,13 +2,13 @@ package com.example.contactlessapp.DbHelpers;
 
 public class Model {
 
-    String name, address, phoneNumber, date, time, photoUrl, username;
+    String name, address, phoneNumber, date, time, photoUrl, username, barangay;
 
     public Model() {
 
     }
 
-    public Model(String name, String address, String phoneNumber, String date, String time, String photoUrl, String username) {
+    public Model(String name, String address, String phoneNumber, String date, String time, String photoUrl, String username, String barangay) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -16,6 +16,7 @@ public class Model {
         this.time = time;
         this.photoUrl = photoUrl;
         this.username = username;
+        this.barangay = barangay;
     }
 
     public String getName() {
@@ -69,4 +70,8 @@ public class Model {
     public String getUsername() {return  username;}
 
     public void  setUsername(String username) {this.username = username;}
+
+    public String getBarangay() {return  barangay;}
+
+    public void  setBarangay(String barangay) {this.barangay = barangay;}
 }
