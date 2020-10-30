@@ -26,6 +26,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CustomerUploadPicActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
@@ -44,7 +46,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upload_pic);
         storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-         selectedImage = findViewById(R.id.selectedImage);
+         selectedImage = findViewById(R.id.selectedImage1);
 
          btnUpdate = findViewById(R.id.btnCustomerActivityUploadImage);
          btnUpdate.setEnabled(false);

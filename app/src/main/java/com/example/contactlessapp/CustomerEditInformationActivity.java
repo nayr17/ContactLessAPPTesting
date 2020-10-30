@@ -25,6 +25,8 @@ import com.squareup.picasso.Picasso;
 import java.sql.Array;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CustomerEditInformationActivity extends AppCompatActivity {
 
     EditText name;
@@ -32,7 +34,7 @@ public class CustomerEditInformationActivity extends AppCompatActivity {
     EditText phoneNumber;
     EditText barangay;
     EditText username;
-    ImageView userPic;
+    CircleImageView userPic;
 
     private String updateName;
     private String updateAddress;
@@ -58,7 +60,7 @@ public class CustomerEditInformationActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.editInformationPhoneNumber);
         barangay = findViewById(R.id.editInformationBarangay);
         username = findViewById(R.id.editInformationUsername);
-        userPic = findViewById(R.id.UserPic);
+        userPic = findViewById(R.id.UserPiceditCustomer);
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("getUsername");
@@ -123,6 +125,7 @@ public class CustomerEditInformationActivity extends AppCompatActivity {
                 getUrl.setValue(result);
                 Picasso.get()
                         .load(result)
+                        .resize(300, 300)
                         .into(userPic);
             }
 

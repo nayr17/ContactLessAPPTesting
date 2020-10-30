@@ -83,7 +83,6 @@ public class CustomerMainActivity extends AppCompatActivity {
         email = findViewById(R.id.CustomerMain_Email);
         welcomeDisplay = findViewById(R.id.welcomeMessage);
         userPic = findViewById(R.id.UserPic);
-        generatredQR_code = findViewById(R.id.generatedQRCode);
 
 
         Intent intent = getIntent();
@@ -126,6 +125,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                 getUrl.setValue(result);
                 Picasso.get()
                         .load(result)
+                        .resize(300,300)
                         .into(userPic);
             }
 
