@@ -180,21 +180,19 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
                                     CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
                                     myRef.child(username).setValue(helperClass);
 
-
                                     Toast.makeText(CreateAccountCustomerActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
-
                                     Intent intent = new Intent(CreateAccountCustomerActivity.this, MainActivity.class);
                                     startActivity(intent);
-
                                     finish();
+
 
                                 }
                                 else{
                                     Toast.makeText(CreateAccountCustomerActivity.this, "could not register! please try again",
                                             Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    Intent intent = new Intent(CreateAccountCustomerActivity.this, CreateAccountCustomerActivity.class);
-                                    startActivity(intent);
+//                                    Intent intent = getIntent();
+//                                    finish();
+//                                    startActivity(intent);
                                 }
                                 progressDialog.dismiss();
 
@@ -214,63 +212,6 @@ public class CreateAccountCustomerActivity extends AppCompatActivity{
 
 
         }
-
-//
-
-
-        /*
-       if(CustomerName.length() ==0 || CustomerName.equals("")){
-           CustomerName.setError("field cannot be empty.");
-       }
-       if(CustomerAddress.length()==0 || CustomerAddress.equals("")){
-           CustomerAddress.setError("field cannot be empty.");
-       }
-       if(CustomerPhoneNumber.length()==0 || CustomerPhoneNumber.equals("")){
-           CustomerPhoneNumber.setError("field cannot be empty.");
-       }
-       if(CustomerBarangay.length()==0 || CustomerBarangay.equals("")){
-           CustomerBarangay.setError("field cannot be empty.");
-       }
-       if(CustomerUsername.length()==0 || CustomerUsername.equals("")){
-           CustomerUsername.setError("field cannot be empty.");
-       }
-       if(CustomerEmail.length()==0 || CustomerEmail.equals("")){
-           CustomerEmail.setError("field cannot be empty.");
-       }
-       if(CustomerPass.length()==0 || CustomerPass.equals("")){
-           CustomerPass.setError("field cannot be empty.");
-       }
-       if(CustomerConfirmPassword.length()==0 || CustomerConfirmPassword.equals("")){
-           CustomerConfirmPassword.setError("field cannot be empty.");
-       }
-       if(CustomerPass != CustomerConfirmPassword) {
-            if (CustomerPass.length() != 0) {
-                if(CustomerConfirmPassword.length() != 0) {
-                    Toast.makeText(this, "password does not match", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-
-         */
-
-
-//       if(password.equals(confirmpass)){
-//           if(password != null){
-//               if(password != null){
-//
-//                       CreateAccountCustomerHelperClass helperClass = new CreateAccountCustomerHelperClass(accountType, name, address, phoneNumber, barangay, username, email, password);
-//                       myref.child(username).setValue(helperClass);
-//
-//                       Intent intent = new Intent(this, MainActivity.class);
-//                       startActivity(intent);
-//                       Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show();
-//
-//               }
-//           }
-//
-//       }
-
-
 
     }
 

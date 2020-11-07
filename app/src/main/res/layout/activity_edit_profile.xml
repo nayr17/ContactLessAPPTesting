@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LinearNavigation.EditProfile">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Photo"
+        android:textSize="25dp"
+        android:layout_margin="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/shopSelectedPhoto"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_baseline_person_24"
+        app:civ_border_color="#32CD32"
+        app:civ_border_width="5dp"/>
+
+
+        <Button
+            android:id="@+id/btnSelectphoto"
+            android:layout_below="@+id/shopSelectedPhoto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="choose photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="#fff"
+            android:background="@drawable/btnselectimage"
+            android:onClick="btnselectphoto"/>
+
+        <Button
+            android:id="@+id/btnUploadphoto"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnSelectphoto"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="upload"
+            android:background="@drawable/btnqrcode"
+            android:textColor="#fff"
+            android:onClick="btnshopUpload"/>
+
+
+
+
+
+
+
+
+</RelativeLayout>

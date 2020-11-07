@@ -73,7 +73,7 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
     }
     private boolean checkPasswordChar(EditText CustomerPass){
         String password = CustomerPass.getText().toString();
-        if(password.length()>=6){
+        if(password.length()>=5){
             return  true;
         }else {
             CustomerPass.setError("must be aleast 6 characters");
@@ -82,7 +82,7 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
     }
     private boolean checkConfirmPasswordChar(EditText CustomerConfirmPassword){
         String password = CustomerConfirmPassword.getText().toString();
-        if(password.length()<=5){
+        if(password.length()>=5){
             return  true;
         }else {
             CustomerConfirmPassword.setError("must be aleast 6 characters");
@@ -157,9 +157,9 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
                                 else {
                                     Toast.makeText(CreateAccountEstablishmentActivity.this, "could not register! please try again",
                                             Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    Intent intent = new Intent(CreateAccountEstablishmentActivity.this, CreateAccountEstablishmentActivity.class);
-                                    startActivity(intent);
+//                                    finish();
+//                                    Intent intent = new Intent(CreateAccountEstablishmentActivity.this, CreateAccountEstablishmentActivity.class);
+//                                    startActivity(intent);
                                 }
                                 progressDialog.dismiss();
                             }
@@ -178,49 +178,6 @@ public class CreateAccountEstablishmentActivity extends AppCompatActivity {
                 }
             });
 
-
-//        if(establishmentName.length() ==0 || establishmentName.equals("")){
-//            establishmentName.setError("field cannot be empty.");
-//        }
-//        if(establishmentLocation.length()==0){
-//            establishmentLocation.setError("field cannot be empty.");
-//        }
-//        if(establishmentUsername.length()==0){
-//            establishmentUsername.setError("field cannot be empty.");
-//        }
-//        if(establishmentEmail.length()==0){
-//            establishmentEmail.setError("field cannot be empty.");
-//        }
-//        if(establishmentPassword.length()==0){
-//            establishmentPassword.setError("field cannot be empty.");
-//        }
-//        if(establishmentConfirmPassword.length()==0){
-//            establishmentConfirmPassword.setError("field cannot be empty.");
-//        }
-//        if(establishmentPassword != establishmentConfirmPassword){
-//            if(establishmentPassword.length() != 0){
-//                if(establishmentConfirmPassword.length() !=0){
-//                    Toast.makeText(this,"Password does not match", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//        }
-//
-//
-//        if(password.equals(confirmPassword)){
-//            if(password.length()!=0){
-//                if(password.length()!=0){
-//
-//                    CreateAccountEstablishmentHelperClass helperClass = new CreateAccountEstablishmentHelperClass(accountType, name, location, username, email, password);
-//                    myref.child(username).setValue(helperClass);
-//
-//                    Intent intent = new Intent(this, MainActivity.class);
-//                    startActivity(intent);
-//                    Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//            }
          }
 
     }

@@ -55,6 +55,10 @@ public class CreateAccountActivity extends AppCompatActivity {
             Intent i = new Intent(this, CreateAccountEstablishmentActivity.class);
             startActivity(i);
         }
+       else
+        {
+            Toast.makeText(this, "select account type", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

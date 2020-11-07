@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,11 +83,11 @@ public class CustomerMainActivity extends AppCompatActivity {
         email = findViewById(R.id.CustomerMain_Email);
         welcomeDisplay = findViewById(R.id.welcomeMessage);
         userPic = findViewById(R.id.UserPic);
-        generatredQR_code = findViewById(R.id.generatedQRCode);
+
 
         Intent intent = getIntent();
         getUsername = intent.getStringExtra("username_input");
-        welcomeDisplay.setText("Hi: " + getUsername);
+        welcomeDisplay.setText(getUsername);
 
 
         DatabaseReference getUserRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + getUsername);
@@ -105,16 +106,11 @@ public class CustomerMainActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(CustomerMainActivity.this, "Error! Restart app", Toast.LENGTH_SHORT).show();
             }
         });
-//        FirebaseUser getEmailRef = firebaseAuth.getCurrentUser();
-//        getEmailRef.getEmail().trim();
-//        String emailRef = getEmailRef.toString().trim();
-//        Toast.makeText(CustomerMainActivity.this,"email"+ emailRef,Toast.LENGTH_LONG).show();
 
     }
 
@@ -129,6 +125,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                 getUrl.setValue(result);
                 Picasso.get()
                         .load(result)
+                        .resize(300,300)
                         .into(userPic);
             }
 
@@ -173,42 +170,6 @@ public class CustomerMainActivity extends AppCompatActivity {
         intent.putExtra("getUsername", getUsername);
         startActivity(intent);
     }
-
-
-//    public Uri getImageUri(Context inContext, Bitmap inImage) { //on progress.
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        inImage.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-//        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Qr_Code", null);
-//        return Uri.parse(path);
-//    }
-
-//    public void UserGenerateQR_code(){
-//
-//
-//        generatredQR_code.setVisibility(View.INVISIBLE);
-//        QR_ID = QR_ID + getUsername;
-//        String data = QR_ID.trim();
-//        QRGEncoder qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT,250);
-//        qrgEncoder.setColorBlack(Color.rgb(50,205,50));
-//        //Get QR code as bitmap
-//        Bitmap bitmap = qrgEncoder.getBitmap();
-//        //set bitmap as image
-//        generatredQR_code.setImageBitmap(bitmap);
-//
-//
-//
-//        //on progress
-//        storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-//        StorageReference profilePicUpload = storageReference.child(getUsername + "/Qr_Code");
-//        profilePicUpload.putFile(getImageUri(this, bitmap)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(CustomerMainActivity.this,"success!!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        Toast.makeText(CustomerMainActivity.this, "" + data, Toast.LENGTH_LONG).show();
-//    }
 
 
 }

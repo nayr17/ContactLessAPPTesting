@@ -52,7 +52,6 @@
         android:layout_height="200dp"
         android:layout_below="@+id/appname2"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btnqrcode"
         android:src="@drawable/qrsample"
         android:layout_marginTop="20dp"/>
 

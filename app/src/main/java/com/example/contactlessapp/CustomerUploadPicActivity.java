@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CustomerUploadPicActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
@@ -34,18 +37,24 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
     private ImageView selectedImage;
     private String username;
     private String imageRef;
+    Button btnUpdate;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //done
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upload_pic);
         storageReference = FirebaseStorage.getInstance().getReference("Registered_Users");
-         selectedImage = findViewById(R.id.selectedImage);
+         selectedImage = findViewById(R.id.selectedImage1);
+
+         btnUpdate = findViewById(R.id.btnCustomerActivityUploadImage);
+         btnUpdate.setEnabled(false);
+         btnUpdate.setVisibility(View.INVISIBLE);
+
 
          Intent intent = getIntent();
          username = intent.getStringExtra("getUserRef");
-        Toast.makeText(this, ""+ username, Toast.LENGTH_LONG).show();
 
 
     }
@@ -72,22 +81,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
                         }
                     });
 
-//                    Task<Uri> downloadURL = profilePicUpload.getDownloadUrl();
-//                    downloadURL.addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Uri> task) {
-//                            imageRef = task.toString();
-//                            Toast.makeText(CustomerUploadPicActivity.this , "url :" + imageRef, Toast.LENGTH_SHORT).show();
-//                            DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username);
-//                            addPhotoRef.child("profilePhotoURL").setValue(imageRef);
-//                        }
-//
                     progressDialog.dismiss();
-//                    Toast.makeText(CustomerUploadPicActivity.this, "File Uploaded ", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(CustomerUploadPicActivity.this, CustomerMainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -106,26 +100,6 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             })
             ;
         }
-//        final DatabaseReference addPhotoRef = FirebaseDatabase.getInstance().getReference("Registered_Users/" + username) ;
-//        addPhotoRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    Toast.makeText(CustomerUploadPicActivity.this , "Exist!!!", Toast.LENGTH_SHORT).show();
-//
-//                    Toast.makeText(CustomerUploadPicActivity.this , " :" + addPhotoRef, Toast.LENGTH_SHORT).show();
-//
-//                    addPhotoRef.child("profilePhotoURL").setValue(123456);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
     }
 
     @Override
@@ -137,6 +111,8 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedFile);
                 selectedImage.setImageBitmap(bitmap);
+                btnUpdate.setEnabled(true);
+                btnUpdate.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -158,6 +134,7 @@ public class CustomerUploadPicActivity extends AppCompatActivity {
         intent.setType("image/*"); // see images only
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, chooseImage_Req);
+
 
     }
 

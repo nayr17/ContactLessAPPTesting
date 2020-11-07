@@ -10,8 +10,13 @@
         android:xlargeScreens="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus>" />
 
     <application
         android:allowBackup="true"
@@ -20,14 +25,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity
-            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:screenOrientation="portrait"
-            tools:replace="screenOrientation"/>
-
+        <activity android:name=".LinearNavigation.EditProfile" />
+        <activity android:name=".LinearNavigation.RecentScan" />
         <activity android:name=".CustomerQRcodeActivity" />
         <activity android:name=".CustomerUploadPicActivity" />
-        <activity android:name=".RecentScanMainActivity" />
         <activity android:name=".CustomerEditInformationActivity" />
         <activity android:name=".CustomerMainActivity" />
         <activity android:name=".ShopEstablishmentMainActivity" />
@@ -37,14 +38,18 @@
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".ForgotPassActivity" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity
+            android:name=".CaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
