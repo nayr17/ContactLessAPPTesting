@@ -59,6 +59,8 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
     private static final String KEY_PHONENUMBER = "Phone Number";
     private static final String KEY_BARANGAY = "Name";
     private static final String KEY_USERNAME = "Username";
+    private static final String KEY_EMAIL = "Email";
+    private static final String KEY_PASSWORD = "Username";
     private String name;
     private String address;
     private String phoneNumber;
@@ -164,6 +166,8 @@ public class CreateAccountCustomerActivity extends AppCompatActivity {
                             test.put(KEY_PHONENUMBER,phoneNumber);
                             test.put(KEY_BARANGAY,barangay);
                             test.put(KEY_USERNAME,username);
+                            test.put(KEY_EMAIL,email);
+                            //test.put(KEY_PASSWORD,password);
 
                             db.collection("Customer Accounts").document().set(test)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.contactlessapp.DbHelpers.CreateAccountCustomerHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -117,42 +118,26 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else{
-                    dbcolref.get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                        LoginData loginData = documentSnapshot.toObject(LoginData.class);
-                                        String usernamedata = "Username";
-//                                        String usernamedata = loginData.getUsername();
-                                        email = loginData.getEmail()
-                                    }
-                                }
-                            });
                     dbreference.get()
                             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    for ()
-                                    if (documentSnapshot.exists()){
-//                                        username = documentSnapshot.getString(KEY_USERNAME);
-//                                        Map<String, Object> put = documentSnapshot.getData();
-//                                        String username2 = dbreference.get()
-                                        }
-//                                        firebaseAuth.signInWithEmailAndPassword(email,)
-                                    }
-                                    else {
-                                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                                    }
+                                    if ( )
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
                                 }
                             });
                 }
 
-                username = username_input.getText().toString().trim();
-                password = password_input.getText().toString().trim();
-
-                firebaseAuth.signInWithEmailAndPassword(email,password)
-            }
+//                username = username_input.getText().toString().trim();
+//                password = password_input.getText().toString().trim();
+//
+//                firebaseAuth.signInWithEmailAndPassword(email,password)
+            };
         });
     }
 }
